@@ -7,6 +7,7 @@
 public class Event {
 	private String eventName;
 	private int eventYear;
+	private int eventMonth;
 	private int eventDay;
 	private double[] eventTimeFrame = new double[] {0.0, 24.0};
 	
@@ -77,6 +78,20 @@ public class Event {
 	// Getter and setter methods for eventDay.
 	
 	/**
+	 * @return the eventMonth
+	 */
+	public int getEventMonth() {
+		return eventMonth;
+	}
+
+	/**
+	 * @param eventMonth the eventMonth to set
+	 */
+	public void setEventMonth(int eventMonth) {
+		this.eventMonth = eventMonth;
+	}
+
+	/**
 	 * @return the eventDay
 	 */
 	public int getEventDay() {
@@ -111,4 +126,5 @@ public class Event {
 	public String toString() {
 		return String.format("");
 	}
+	
 }
