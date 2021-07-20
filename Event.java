@@ -3,7 +3,7 @@
  * @author Sidd
  *
  */
-
+ 
 public class Event {
 	private String eventName;
 	private int eventYear;
