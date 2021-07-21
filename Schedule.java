@@ -14,9 +14,9 @@ public class Schedule {
 	
 	//create constructor
 	public Schedule(ArrayList<Event> setEvents, int setYear, int setDay) {
-		events=setEvents;
-		scheduleYear=setYear;
-		scheduleDay=setDay;
+		events = setEvents;
+		scheduleYear = setYear;
+		scheduleDay = setDay;
 	}
 	
 	/**
@@ -55,16 +55,25 @@ public class Schedule {
 	/**
 	 * @return String visualization of schedule
 	 */
-	public String ScheduleVisualizer() {
+	public String scheduleVisualizer() {
 		String ret = "";
-		for (int i = 0; i<=events.size(); i++) {
-			ret = ret + events.get(i).toString();
+		for (int i = 0; i < events.size(); i++) {
+			ret += events.get(i).toString() + " \n";
 		}
 		return ret;
 	}
 	
+	// test
 	public static void main(String[] args) {
-		
+		double[] timeFrameOne = {10.00, 15.25};
+		double[] timeFrameTwo = {16.00, 19.00};
+		Event completeTest = new Event("complete test", 2, 2, 2020, timeFrameOne);
+		Event askForGrades = new Event("ask for grades", 2, 2, 2020, timeFrameTwo);
+		ArrayList<Event> eventList = new ArrayList<Event>();
+		eventList.add(completeTest);
+		eventList.add(askForGrades);
+		Schedule schedule1 = new Schedule(eventList, 2020, 2);
+		System.out.println(schedule1.scheduleVisualizer());
 	}
 	
 }
