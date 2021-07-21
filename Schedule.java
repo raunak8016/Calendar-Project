@@ -1,6 +1,6 @@
 /**
  * 
- * @author rauna
+ * @author raunak
  * 
  */
 
@@ -19,28 +19,52 @@ public class Schedule {
 		scheduleDay=setDay;
 	}
 	
-	//getter methods for variables
+	/**
+	 * @return events as an ArrayList
+	 */
 	public ArrayList<Event> getEvents() {
 		return events;
 	}
+	
+	/**
+	 * @return the scheduleYear
+	 */
 	public int getYear() {
 		return scheduleYear;
 	}
+	
+	
+	/**
+	 * @return the scheduleDay
+	 */
 	public int getDay() {
 		return scheduleDay;
 	}
-	//add events method
+	
+	/**
+	 * @param eventToAdd to events
+	 */
 	public void addEvent(Event eventToAdd) {
-		events.add(eventToAdd);
+		int year = eventToAdd.getEventYear();
+		int day = eventToAdd.getEventDay();
+		// Checks eventToAdd variables to see if event can be added to schedule
+		if (year == scheduleYear && day == scheduleDay) events.add(eventToAdd);
+		else System.out.println("Error: event attributes don't match with those of schedule.");
 	}
 	
-	//create visualization method
+	/**
+	 * @return String visualization of schedule
+	 */
 	public String ScheduleVisualizer() {
 		String ret = "";
 		for (int i = 0; i<=events.size(); i++) {
-			ret = ret+ events.get(i).toString();
+			ret = ret + events.get(i).toString();
 		}
 		return ret;
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 	
 }
