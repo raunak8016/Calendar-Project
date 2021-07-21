@@ -12,17 +12,17 @@ public class Event {
 	private double length;
 	private double[] eventTimeFrame = new double[] {0.0, 24.0};
 	
-	/*public Event(String eventName, int eventYear, int eventMonth, int eventDay) {
+	public Event(String eventName, int eventDay, int eventMonth, int eventYear) {
 		this.eventName = eventName;
 		this.eventYear = eventYear;
 		this.eventMonth = eventMonth;
 		this.eventDay = eventDay;
-		this.length  = 1;
-	}*/
+	}
 	
-	public Event(String eventName, int eventYear, int eventDay, double[] eventTimeFrame) {
+	public Event(String eventName, int eventDay, int eventMonth, int eventYear, double[] eventTimeFrame) {
 		this.eventName = eventName;
 		this.eventYear = eventYear;
+		this.eventMonth = eventMonth;
 		this.eventDay = eventDay;
 		if (eventTimeFrame[0] < eventTimeFrame[1] && eventTimeFrame.length == 2) {
 			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] <= 24.0) {
@@ -125,11 +125,30 @@ public class Event {
 		this.eventTimeFrame = eventTimeFrame;
 	}
 	
+	public String dateToString() {
+		return String.format("%s %s, %s", eventMonth, eventDay, eventYear);
+	}
+	
+	public String timeFrameToString() {
+		String first = " ";
+		String second = " ";
+		int startHour = (int) eventTimeFrame[0];
+		int startMin = (int) ((eventTimeFrame[0] - (startHour)) * 60);
+		int endHour = (int) eventTimeFrame[1];
+		int endMin = (int) ((eventTimeFrame[1] - endHour) * 60);
+		if ((eventTimeFrame[0] > 12) && (eventTimeFrame[1] > 12)) {
+			first = " PM";
+			second = first;
+			String startTime = String.format("%s:%i", startHour, startMin, first);
+			String endTime = String.format("%s:%i %i", startHour, startMin, first);
+		}
+		return String.format("%s", null);
+	}
+	
 	// toString() method.
 
 	public String toString() {
-		String ret = "Name: " + this.getEventName()+", Year: " + this.getEventYear()+", Day: "+ this.getEventDay()+"/n___________________________________________________________________________/n";
-		return ret;
+		return eventName;
 	}
 	
 }
