@@ -125,21 +125,38 @@ public class Event {
 		
 		String startTime;
 		
+		String newStartMin = Integer.toString(startMin);
+		String newEndMin = Integer.toString(endMin);
+		
 		if ((eventTimeFrame[0] > 12) && (eventTimeFrame[1] > 12)) {
 			startHour -= 12;
 			endHour -= 12;
-			startTime = String.format("%s:%s", startHour, startMin);
+			
+			if (startMin == 0 || startMin < 10) {
+				newStartMin = "0" + newStartMin;
+			}
+			
+			startTime = String.format("%s:%s", startHour, newStartMin);
 		}
 		else if ((eventTimeFrame[0] < 12) && (eventTimeFrame[1] < 12)) {
 			second = "AM";
-			startTime = String.format("%s:%s", startHour, startMin);
+			
+			if (startMin == 0 || startMin < 10) {
+				newStartMin = "0" + newStartMin;
+			}
+			
+			startTime = String.format("%s:%s", startHour, newStartMin);
 		} else {
 			first = "AM";
 			endHour -= 12;
 			startTime = String.format("%s:%s %s", startHour, startMin, first);
 		}
+		
+		if (endMin == 0 || endMin < 10) {
+			newEndMin = "0" + newEndMin;
+		}
 
-		String endTime = String.format("%s:%s %s", endHour, endMin, second);
+		String endTime = String.format("%s:%s %s", endHour, newEndMin, second);
 		
 		return String.format("%s - %s", startTime, endTime);
 	}
@@ -164,6 +181,5 @@ public class Event {
 	public String toString() {
 		return String.format("%s scheduled on %s %s %s", eventName, dateToString(), "@", timeFrameToString());
 	}
-	
 	
 }
