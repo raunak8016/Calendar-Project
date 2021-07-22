@@ -19,6 +19,10 @@ public class Schedule {
 		scheduleDay = setDay;
 	}
 	
+	public Schedule(int setYear, int setDay) {
+		scheduleYear = setYear;
+		scheduleDay = setDay;
+	}
 	/**
 	 * @return events as an ArrayList
 	 */

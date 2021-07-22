@@ -12,20 +12,12 @@ public class Event {
 	private double length;
 	private double[] eventTimeFrame = new double[] {0.0, 24.0};
 	
-	public Event(String eventName, int eventDay, int eventMonth, int eventYear) {
-		this.eventName = eventName;
-		this.eventYear = eventYear;
-		this.eventMonth = eventMonth;
-		this.eventDay = eventDay;
-		this.setLength(0.0);
-	}
-	
 	public Event(String eventName, int eventDay, int eventMonth, int eventYear, double[] eventTimeFrame) {
 		this.eventName = eventName;
 		this.eventYear = eventYear;
 		this.eventMonth = eventMonth;
 		this.eventDay = eventDay;
-		if (eventTimeFrame[0] < eventTimeFrame[1] && eventTimeFrame.length == 2) {
+		if (eventTimeFrame[0] < eventTimeFrame[1]) {
 			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0) {
 				this.eventTimeFrame = eventTimeFrame;
 				this.setLength(eventTimeFrame[1]-eventTimeFrame[0]);
@@ -185,10 +177,5 @@ public class Event {
 		return String.format("%s scheduled on %s %s %s", eventName, dateToString(), "@", timeFrameToString());
 	}
 	
-	public static void main(String[] args) {
-		double[] range = {3.25, 9.00};
-		Event event = new Event("hotdog eating contest", 10, 2, 2020, range);
-		System.out.println(event.toString());
-	}
 	
 }
