@@ -78,15 +78,4 @@ public class Schedule {
 		return ret;
 	}
 	
-	// test
-	/*public static void main(String[] args) {
-		double[] timeFrameOne = {10.00, 15.25};
-		double[] timeFrameTwo = {16.00, 19.00};
-		Event completeTest = new Event("complete test", 2, 2, 2020, timeFrameOne);
-		Event askForGrades = new Event("ask for grades", 2, 3, 2020, timeFrameTwo);
-		Schedule schedule1 = new Schedule(2020, 2, 2);
-		schedule1.addEvent(completeTest);
-		schedule1.addEvent(askForGrades);
-		System.out.println(schedule1.scheduleVisualizer());
-	}*/
 }

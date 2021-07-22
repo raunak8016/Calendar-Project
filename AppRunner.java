@@ -52,17 +52,17 @@ public class AppRunner {
 		//continue to ask them for input if they have not said they do not want to add any more events
 		while (addEvent.equalsIgnoreCase("yes")) {
 			System.out.println("Enter the name of the event, the day of the event and the start and end time of the event seperated by commas");
-			System.out.println("Example: Dentist Appointment,26,5.15,15.30 would be for a Dentist Appointment on the 26th from 5:15 A.M. to 15:30 5P.M.");
+			System.out.println("Example: Dentist Appointment,26,5.15,15.30 would be for a Dentist Appointment on the 26th from 5:15 A.M. to 15:30 P.M.");
 			double[] timeArray = new double[2]; //array for timeframe to initate event object
 			
 			String Event = myObj.nextLine();
 			String[] eventInfo = Event.split(","); //split the user input to generate data to create event class
 			
-			timeArray[0]=Double.parseDouble(eventInfo[2]); //start time
-			timeArray[1]=Double.parseDouble(eventInfo[3]); //end time
+			timeArray[0]= Double.parseDouble(eventInfo[2]); //start time
+			timeArray[1]= Double.parseDouble(eventInfo[3]); //end time
 
 			//add new event object to new schedule object
-			scheduleDays.getEvents().add(new Event(eventInfo[0], year, month, Integer.parseInt(eventInfo[2]), timeArray));
+			scheduleDays.getEvents().add(new Event(eventInfo[0], Integer.parseInt(eventInfo[1]), month, year, timeArray));
 			
 			//ask for input once again
 			System.out.print("Would you like to add another event on this day? ");

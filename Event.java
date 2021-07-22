@@ -19,7 +19,7 @@ public class Event {
 		this.eventYear = eventYear;
 		this.eventMonth = Month.of(eventMonth).toString();
 		this.eventDay = eventDay;
-		eventTimeFrame= new double[] {0.00, 24.00};
+		this.eventTimeFrame = eventTimeFrame;
 		if (eventTimeFrame[0] < eventTimeFrame[1]) {
 			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0) {
 				this.eventTimeFrame = eventTimeFrame;
@@ -121,10 +121,9 @@ public class Event {
 		String second = "PM";
 		
 		int startHour = (int) eventTimeFrame[0];
-		int startMin = (int) ((eventTimeFrame[0] - (startHour)) * 60);
-		
+		int startMin = (int) ((eventTimeFrame[0] - (startHour)) * 100);
 		int endHour = (int) eventTimeFrame[1];
-		int endMin = (int) ((eventTimeFrame[1] - endHour) * 60);
+		int endMin = (int) ((eventTimeFrame[1] - endHour) * 100);
 		
 		String startTime;
 		
