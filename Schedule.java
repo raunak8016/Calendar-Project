@@ -10,6 +10,7 @@ public class Schedule {
 	//initialize variables
 	private ArrayList<Event> events = new ArrayList<Event>();
 	private int scheduleYear;
+	private int scheduleMonth;
 	private int scheduleDay;
 	
 	//create constructor
@@ -23,6 +24,7 @@ public class Schedule {
 		scheduleYear = setYear;
 		scheduleDay = setDay;
 	}
+	
 	/**
 	 * @return events as an ArrayList
 	 */
