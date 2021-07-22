@@ -11,7 +11,6 @@ public class Calendar {
 	private int year;
 	private int month;
 	
-	
 	/**
 	 * Constructor for Calendar object which
 	 * takes year and month as instance

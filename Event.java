@@ -35,6 +35,13 @@ public class Event {
 				this.eventTimeFrame = eventTimeFrame;
 	}
 	
+	/**
+	 * Constructor creates a new instance of Event
+	 * by copying all attribute values of another
+	 * instance
+	 * 
+	 * @param eventToCopy
+	 */
 	public Event(Event eventToCopy) {
 		this.eventName = eventToCopy.getEventName();
 		this.eventYear =  eventToCopy.getEventYear();
@@ -120,7 +127,6 @@ public class Event {
 		this.eventTimeFrame = eventTimeFrame;
 	}
 	
-	
 	/**
 	 * @return event date in String form
 	 */
@@ -135,53 +141,55 @@ public class Event {
 		return eventMonth;
 	}
 	
+	/**
+	 * @return eventTimeFrame as String
+	 */
 	public String timeFrameToString() {
 		String first = "";
 		String second = "PM";
-		
+		// Event start.
 		int startHour = (int) eventTimeFrame[0];
 		int startMin = (int) ((eventTimeFrame[0] - (startHour)) * 100);
+		// Event end.
 		int endHour = (int) eventTimeFrame[1];
 		int endMin = (int) ((eventTimeFrame[1] - endHour) * 100);
-		
+		// Start of timeFrame as String
 		String startTime;
-		
+		// Reassigned values to be added into formatted String
 		String newStartMin = Integer.toString(startMin);
 		String newEndMin = Integer.toString(endMin);
-		
+		/*
+		 * Sets conditional for formatting into hours
+		 * and minutes as well as adding AM/PM formatting
+		 * based on starting and ending time of Event
+		 * instance
+		 */
 		if ((eventTimeFrame[0] > 12) && (eventTimeFrame[1] > 12)) {
 			startHour -= 12;
 			endHour -= 12;
-			
 			if (startMin == 0 || startMin < 10) {
 				newStartMin = "0" + newStartMin;
 			}
-			
 			startTime = String.format("%s:%s", startHour, newStartMin);
 		}
 		else if ((eventTimeFrame[0] < 12) && (eventTimeFrame[1] < 12)) {
 			second = "AM";
-			
 			if (startMin == 0 || startMin < 10) {
 				newStartMin = "0" + newStartMin;
 			}
-			
 			startTime = String.format("%s:%s", startHour, newStartMin);
 		} else {
 			first = "AM";
-			
 			if (startMin == 0 || startMin < 10) {
 				newStartMin = "0" + newStartMin;
 			}
-			
 			endHour -= 12;
 			startTime = String.format("%s:%s %s", startHour, newStartMin, first);
 		}
-		
 		if (endMin == 0 || endMin < 10) {
 			newEndMin = "0" + newEndMin;
 		}
-
+		// endTime formatted
 		String endTime = String.format("%s:%s %s", endHour, newEndMin, second);
 		
 		return String.format("%s - %s", startTime, endTime);
