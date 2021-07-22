@@ -11,21 +11,35 @@ public class Event {
 	private int eventYear;
 	private String eventMonth;
 	private int eventDay;
-	private double length;
 	private double[] eventTimeFrame;
 
+	/**
+	 * Constructor creates an instance of Event with
+	 * event date information as well as the time
+	 * frame of the event.
+	 * 
+	 * @param eventName assigns eventName.
+	 * @param eventDay assigns eventDay.
+	 * @param eventMonth assigns eventMonth as String value based on Month index.
+	 * @param eventYear assigns eventYear.
+	 * @param eventTimeFrame assigns TimeFrame.
+	 */
 	public Event(String eventName, int eventDay, int eventMonth, int eventYear, double[] eventTimeFrame) {
 		this.eventName = eventName;
 		this.eventYear = eventYear;
 		this.eventMonth = Month.of(eventMonth).toString();
 		this.eventDay = eventDay;
-		this.eventTimeFrame = eventTimeFrame;
-		if (eventTimeFrame[0] < eventTimeFrame[1]) {
-			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0) {
+		// Ensures valid values for eventTimeFrame
+		if (eventTimeFrame[0] < eventTimeFrame[1])
+			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0)
 				this.eventTimeFrame = eventTimeFrame;
-				this.setLength(eventTimeFrame[1]-eventTimeFrame[0]);
-			}
-		}
+	}
+	
+	public Event(Event eventToCopy) {
+		this.eventName = eventToCopy.getEventName();
+		this.eventYear =  eventToCopy.getEventYear();
+		this.eventMonth = eventToCopy.getEventMonth();
+		this.eventDay = eventToCopy.getEventDay();
 	}
 
 	// Getter and setter methods for eventName.
@@ -60,7 +74,7 @@ public class Event {
 		this.eventYear = eventYear;
 	}
 	
-	// Getter and setter methods for eventDay.
+	// Getter and setter methods for eventMonth.
 	
 	/**
 	 * @return the eventMonth
@@ -114,8 +128,13 @@ public class Event {
 		return String.format("%s %s, %s", eventMonth, eventDay, eventYear);
 	}
 	
-	//did not end up implementing this method 
-	//could be used as an additional feature in the future so will leave code
+	/**
+	 * @return
+	 */
+	public String setTimeFormat() {
+		return eventMonth;
+	}
+	
 	public String timeFrameToString() {
 		String first = "";
 		String second = "PM";
@@ -168,24 +187,7 @@ public class Event {
 		return String.format("%s - %s", startTime, endTime);
 	}
 
-	/**
-	 * @return the length
-	 */
-	public double getLength() {
-		return length;
-	}
-
-	/**
-	 * @param length the length to set in hours
-	 */
-	public void setLength(double length) {
-		this.length = length;
-		eventTimeFrame[1] = eventTimeFrame[0] + length;
-	}
-
-	
-	// toString() method. 
-	
+	// toString() method
 	public String toString() {
 		return String.format("%s scheduled on %s %s %s", eventName, dateToString(), "@", timeFrameToString());
 	}

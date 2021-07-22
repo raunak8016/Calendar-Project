@@ -8,13 +8,21 @@ import java.util.ArrayList;
  */
 
 public class Schedule {
-	//initialize variables
 	private ArrayList<Event> events = new ArrayList<Event>();
 	private int scheduleYear;
 	private String scheduleMonth;
 	private int scheduleDay;
 	
-	//create constructor
+	/**
+	 * Constructor creates an instance of Schedule
+	 * with ArrayList instance of events and
+	 * date to place schedule on the Calendar.
+	 * 
+	 * @param setEvents
+	 * @param setYear
+	 * @param setMonth
+	 * @param setDay
+	 */
 	public Schedule(ArrayList<Event> setEvents, int setYear, int setMonth, int setDay) {
 		events = setEvents;
 		scheduleYear = setYear;
@@ -22,12 +30,28 @@ public class Schedule {
 		scheduleDay = setDay;
 	}
 	
+	/**
+	 * Constructor creates an instance of Schedule
+	 * with just the date.
+	 * 
+	 * @param setYear
+	 * @param setMonth
+	 * @param setDay
+	 */
 	public Schedule(int setYear, int setMonth, int setDay) {
 		scheduleYear = setYear;
 		scheduleMonth = Month.of(setMonth).toString();
 		scheduleDay = setDay;
 	}
 	
+	/**
+	 * Constructor creates an instance of Schedule
+	 * with only the year and the month being
+	 * assigned.
+	 * 
+	 * @param setYear
+	 * @param setMonth
+	 */
 	public Schedule(int setYear, int setMonth) {
 		scheduleYear = setYear;
 		scheduleMonth = Month.of(setMonth).toString();
@@ -37,7 +61,11 @@ public class Schedule {
 	 * @return events as an ArrayList
 	 */
 	public ArrayList<Event> getEvents() {
-		return events;
+		ArrayList<Event> newEventList = new ArrayList<Event>();
+		for (Event event : this.events) {
+			newEventList.add(event);
+		}
+		return newEventList;
 	}
 	
 	/**
@@ -46,7 +74,6 @@ public class Schedule {
 	public int getYear() {
 		return scheduleYear;
 	}
-	
 	
 	/**
 	 * @return the scheduleDay
@@ -62,9 +89,12 @@ public class Schedule {
 		int year = eventToAdd.getEventYear();
 		String month = eventToAdd.getEventMonth();
 		int day = eventToAdd.getEventDay();
-		// Checks eventToAdd variables to see if event can be added to schedule
-		if (year == scheduleYear && month.equals(scheduleMonth) && day == scheduleDay) this.events.add(eventToAdd);
-//		else System.out.println(String.format("Error: event attribute of '%s' doesn't match with those of Schedule instance.", eventToAdd.getEventName()));
+		/*
+		 *  Adds eventToAdd only if the values
+		 *  match those of the Schedule instance.
+		 */
+		if (year == scheduleYear && month.equals(scheduleMonth) && day == scheduleDay)
+			this.events.add(eventToAdd);
 	}
 	
 	/**
@@ -73,7 +103,7 @@ public class Schedule {
 	public String scheduleVisualizer() {
 		String ret = "";
 		for (int i = 0; i < this.getEvents().size(); i++) {
-			ret = ret+ this.getEvents().get(i).toString() + " \n";
+			ret = ret + this.getEvents().get(i).toString() + " \n";
 		}
 		return ret;
 	}
