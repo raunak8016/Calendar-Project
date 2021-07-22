@@ -12,13 +12,14 @@ public class Event {
 	private String eventMonth;
 	private int eventDay;
 	private double length;
-	private double[] eventTimeFrame = new double[] {0.00, 24.00};
+	private double[] eventTimeFrame;
 
 	public Event(String eventName, int eventDay, int eventMonth, int eventYear, double[] eventTimeFrame) {
 		this.eventName = eventName;
 		this.eventYear = eventYear;
 		this.eventMonth = Month.of(eventMonth).toString();
 		this.eventDay = eventDay;
+		eventTimeFrame= new double[] {0.00, 24.00};
 		if (eventTimeFrame[0] < eventTimeFrame[1]) {
 			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0) {
 				this.eventTimeFrame = eventTimeFrame;
