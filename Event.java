@@ -1,21 +1,23 @@
+import java.time.Month;
+
 /**
  * 
  * @author Sidd+Raunak
  *
  */
- 
+
 public class Event {
 	private String eventName;
 	private int eventYear;
-	private int eventMonth;
+	private String eventMonth;
 	private int eventDay;
 	private double length;
-	private double[] eventTimeFrame = new double[] {0.0, 24.0};
-	
+	private double[] eventTimeFrame = new double[] {0.00, 24.00};
+
 	public Event(String eventName, int eventDay, int eventMonth, int eventYear, double[] eventTimeFrame) {
 		this.eventName = eventName;
 		this.eventYear = eventYear;
-		this.eventMonth = eventMonth;
+		this.eventMonth = Month.of(eventMonth).toString();
 		this.eventDay = eventDay;
 		if (eventTimeFrame[0] < eventTimeFrame[1]) {
 			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0) {
@@ -35,20 +37,6 @@ public class Event {
 	}
 	
 	/**
-	 * @return the eventName
-	 */
-	public Event[] getEventNamesByName(String name) {
-		return new Event[0];
-	}
-	
-	/**
-	 * @return the eventName
-	 */
-	public Event[] getEventNamesByDate(String date) {
-		return new Event[0];
-	}
-	
-	/**
 	 * @param eventName the eventName to set
 	 */
 	public void setEventName(String eventName) {
@@ -63,7 +51,6 @@ public class Event {
 	public int getEventYear() {
 		return eventYear;
 	}
-
 	
 	/**
 	 * @param eventYear the eventYear to set
@@ -77,7 +64,7 @@ public class Event {
 	/**
 	 * @return the eventMonth
 	 */
-	public int getEventMonth() {
+	public String getEventMonth() {
 		return eventMonth;
 	}
 
@@ -85,7 +72,7 @@ public class Event {
 	 * @param eventMonth the eventMonth to set
 	 */
 	public void setEventMonth(int eventMonth) {
-		this.eventMonth = eventMonth;
+		this.eventMonth = Month.of(eventMonth).toString();
 	}
 
 	/**
@@ -137,26 +124,47 @@ public class Event {
 		int endMin = (int) ((eventTimeFrame[1] - endHour) * 60);
 		
 		String startTime;
-		String endTime = String.format("%s:%s %s", endHour, endMin, second);
+		
+		String newStartMin = Integer.toString(startMin);
+		String newEndMin = Integer.toString(endMin);
 		
 		if ((eventTimeFrame[0] > 12) && (eventTimeFrame[1] > 12)) {
 			startHour -= 12;
 			endHour -= 12;
-			startTime = String.format("%s:%s", startHour, startMin);
+			
+			if (startMin == 0 || startMin < 10) {
+				newStartMin = "0" + newStartMin;
+			}
+			
+			startTime = String.format("%s:%s", startHour, newStartMin);
 		}
 		else if ((eventTimeFrame[0] < 12) && (eventTimeFrame[1] < 12)) {
 			second = "AM";
-			startTime = String.format("%s:%s", startHour, startMin);
+			
+			if (startMin == 0 || startMin < 10) {
+				newStartMin = "0" + newStartMin;
+			}
+			
+			startTime = String.format("%s:%s", startHour, newStartMin);
 		} else {
 			first = "AM";
-			startTime = String.format("%s:%s %s", startHour, startMin, first);
+			
+			if (startMin == 0 || startMin < 10) {
+				newStartMin = "0" + newStartMin;
+			}
+			
 			endHour -= 12;
+			startTime = String.format("%s:%s %s", startHour, newStartMin, first);
+		}
+		
+		if (endMin == 0 || endMin < 10) {
+			newEndMin = "0" + newEndMin;
 		}
 
+		String endTime = String.format("%s:%s %s", endHour, newEndMin, second);
+		
 		return String.format("%s - %s", startTime, endTime);
 	}
-	
-	// toString() method.
 
 	/**
 	 * @return the length
@@ -173,9 +181,11 @@ public class Event {
 		eventTimeFrame[1] = eventTimeFrame[0] + length;
 	}
 
+	
+	// toString() method.
+	
 	public String toString() {
 		return String.format("%s scheduled on %s %s %s", eventName, dateToString(), "@", timeFrameToString());
 	}
-	
 	
 }

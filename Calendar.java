@@ -32,6 +32,6 @@ public class Calendar {
             if (counter % 7 == 0) {
                 System.out.println();
             }
-        } 
+        }
     }
 }
