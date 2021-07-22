@@ -63,23 +63,23 @@ public class Schedule {
 		String month = eventToAdd.getEventMonth();
 		int day = eventToAdd.getEventDay();
 		// Checks eventToAdd variables to see if event can be added to schedule
-		if (year == scheduleYear && month.equals(scheduleMonth) && day == scheduleDay) events.add(eventToAdd);
+		if (year == scheduleYear && month.equals(scheduleMonth) && day == scheduleDay) this.events.add(eventToAdd);
 //		else System.out.println(String.format("Error: event attribute of '%s' doesn't match with those of Schedule instance.", eventToAdd.getEventName()));
 	}
 	
 	/**
-	 * @return String visualization of schedule
+	 * @return String visualization of schedule 
 	 */
 	public String scheduleVisualizer() {
 		String ret = "";
-		for (int i = 0; i < events.size(); i++) {
-			ret += events.get(i).toString() + " \n";
+		for (int i = 0; i < this.getEvents().size(); i++) {
+			ret = ret+ this.getEvents().get(i).toString() + " \n";
 		}
 		return ret;
 	}
 	
 	// test
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		double[] timeFrameOne = {10.00, 15.25};
 		double[] timeFrameTwo = {16.00, 19.00};
 		Event completeTest = new Event("complete test", 2, 2, 2020, timeFrameOne);
@@ -88,5 +88,5 @@ public class Schedule {
 		schedule1.addEvent(completeTest);
 		schedule1.addEvent(askForGrades);
 		System.out.println(schedule1.scheduleVisualizer());
-	}
+	}*/
 }

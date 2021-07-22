@@ -1,10 +1,20 @@
 import java.time.LocalDate;
 import java.time.YearMonth;
 
+/**
+ * 
+ * @author rauna
+ *
+ */
+
 public class Calendar {
 	private int year;
 	private int month;
 	
+	
+	/*
+	 * Constructor class for calendar
+	 */
 	public Calendar(int year, int month) {
 		if(year>=0 && year<= 3000) this.year= year;
 		else System.out.println("Error");
@@ -12,13 +22,16 @@ public class Calendar {
 		else System.out.println("Error");
 	}
 	
+	
+	/*
+	 * visualization for calendar using calendar info 
+	 */
 	public void printMonth() {
         YearMonth ym = YearMonth.of(year, month);
         System.out.println("Sun Mon Tue Wed Thu Fri Sat");
         int counter = 1;
         //some code and structure implemented from https://stackoverflow.com/questions/35679827/how-to-display-calendar-in-java
         // Get day of week of 1st date of the month and print space for as many days as
-        // distant from SUN
         int dayValue = LocalDate.of(year, month, 1).getDayOfWeek().getValue();
         if (dayValue != 7)
             for (int i = 0; i < dayValue; i++, counter++) {

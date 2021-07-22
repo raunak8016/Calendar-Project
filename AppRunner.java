@@ -81,7 +81,7 @@ public class AppRunner {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//run application with run method
+		//run application with run method 
 		AppRunner calendar1 = new AppRunner();
 		calendar1.run();
 	}

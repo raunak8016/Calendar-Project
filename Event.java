@@ -113,7 +113,7 @@ public class Event {
 		return String.format("%s %s, %s", eventMonth, eventDay, eventYear);
 	}
 	
-	//did not end up implementing this method
+	//did not end up implementing this method 
 	//could be used as an additional feature in the future so will leave code
 	public String timeFrameToString() {
 		String first = "";
