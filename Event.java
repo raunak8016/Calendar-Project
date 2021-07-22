@@ -148,8 +148,13 @@ public class Event {
 			startTime = String.format("%s:%s", startHour, newStartMin);
 		} else {
 			first = "AM";
+			
+			if (startMin == 0 || startMin < 10) {
+				newStartMin = "0" + newStartMin;
+			}
+			
 			endHour -= 12;
-			startTime = String.format("%s:%s %s", startHour, startMin, first);
+			startTime = String.format("%s:%s %s", startHour, newStartMin, first);
 		}
 		
 		if (endMin == 0 || endMin < 10) {
@@ -160,8 +165,6 @@ public class Event {
 		
 		return String.format("%s - %s", startTime, endTime);
 	}
-	
-	// toString() method.
 
 	/**
 	 * @return the length
@@ -178,6 +181,9 @@ public class Event {
 		eventTimeFrame[1] = eventTimeFrame[0] + length;
 	}
 
+	
+	// toString() method.
+	
 	public String toString() {
 		return String.format("%s scheduled on %s %s %s", eventName, dateToString(), "@", timeFrameToString());
 	}
