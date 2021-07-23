@@ -1,4 +1,3 @@
-import java.time.Month;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -12,6 +11,9 @@ public class Interface {
 	HashMap<String, Calendar> calendars = new HashMap<String, Calendar>();
 	Scanner userInput = new Scanner(System.in);
 	
+	/**
+	 * Displays starting header in application for new users.
+	 */
 	public void displayWelcomeHeader() {
 		System.out.println("Welcome to the new and improved Virtual Calendar,"
 				+ "\nyour very own calendar for scheduling events!"
@@ -19,6 +21,10 @@ public class Interface {
 				+ "\nin the text next to the options to choose an action.\n");
 	}
 	
+	/**
+	 * Displays options of the main menu for the user
+	 * to pick based on what action they want to do.
+	 */
 	public void displayOptions() {
 		if (calendars.isEmpty()) {
 			System.out.println("\n> Create a calendar ('create')");
@@ -30,16 +36,31 @@ public class Interface {
 		}
 	}
 	
-	public String invalidInput(Scanner inputObject) {
+	/**
+	 * Handles an invalid input by returning a newly
+	 * prompted user input, which is handled as a
+	 * a user input itself.
+	 *
+	 * @return
+	 */
+	public String invalidInput() {
 		System.out.println("Invalid input, please try again\n");
-		return inputObject.nextLine();
+		return userInput.nextLine();
 	}
 	
+	/**
+	 * Presents dialogue once user has chosen to
+	 * exit the application, and then exits.
+	 */
 	public void exitApplication() {
 		System.out.println("Exiting application");
 		System.exit(0);
 	}
 	
+	/**
+	 * @return a HashMap object to use values
+	 * as parameters for other functions.
+	 */
 	public HashMap<String, Integer> returnYearandMonth() {
 		System.out.print("\nEnter year: ");
 		int year = userInput.nextInt();
@@ -55,10 +76,18 @@ public class Interface {
 		return ret;
 	}
 	
+	/**
+	 * @return the calendars to get as String object
+	 */
 	public String getCalendars() {
 		return calendars.toString();
 	}
 	
+	/**
+	 * Adds Calendar instance to calendars if it doesn't exist.
+	 * If the instance exists, the same object is just re-added
+	 * to calendars.
+	 */
 	public void addCalendar(){
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		
@@ -67,37 +96,45 @@ public class Interface {
 		
 		Calendar newCalendar = accessCalendarForUser(year, month);
 		calendars.put(newCalendar.toString(), newCalendar);
-		System.out.println("\nCalendar successfully created!\n");
+		System.out.println("\nCalendar successfully created!");
 	}
 	
+	/**
+	 * gives user a view of the specified Calendar instance
+	 * if it exists. If not, it asks for a valid input
+	 * to find a Calendar.
+	 */
 	public void viewCalendar() {
-		System.out.println("\nHere are all of your current calendars."
-				+ "\nwhich one would you like to view?");
-		
-		System.out.println("\n" + calendars.keySet().toString());
-		
-		HashMap<String, Integer> calendarArgs = returnYearandMonth();
-		
-		int year = calendarArgs.get("year");
-		int month = calendarArgs.get("month");
-		
-		Calendar calendarInstance = calendars.get(Calendar.toKeyFormattedString(year, month));
-		
-		if (calendarInstance != null) {
-			calendarInstance.printMonth();
-			System.out.println("Would you like to view a schedule? ");
-			switch (userInput.nextLine()) {
-				case "yes":
+		while (true) {
+			System.out.println("\nHere are all of your current calendars."
+					+ "\nwhich one would you like to view?");
+			System.out.println("\n" + calendars.keySet().toString());
+			
+			HashMap<String, Integer> calendarArgs = returnYearandMonth();
+			
+			int year = calendarArgs.get("year");
+			int month = calendarArgs.get("month");
+			
+			Calendar calendarInstance = calendars.get(Calendar.toKeyFormattedString(year, month));
+			
+			if (calendarInstance != null) {
+				calendarInstance.printMonth();
+				System.out.println("Would you like to view a schedule? ");
+				if (userInput.nextLine() == "yes") {
 					scheduleVisual(year, month, calendarInstance.accessScheduleForUser());
 					break;
-				default:
-					break;
+				}
+			}
+			else {
+				System.out.println("Error: Calendar does not exist \n");
 			}
 		}
-		else
-			System.out.println("Error: Calendar does not exist ");
 	}
 	
+	/**
+	 * Schedules an event for the user by asking for
+	 * its month and date.
+	 */
 	public void scheduleEventForUser() {
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		int year = calendarArgs.get("year");
@@ -137,8 +174,16 @@ public class Interface {
 		}
 	}
 	
+	/**
+	 * Navigates to provide a schedule visualization if
+	 * the user indicates that they want to see one.
+	 * 
+	 * @param year of the Schedule instance
+	 * @param month of the Schedule instance
+	 * @param scheduleDays Schedule instance
+	 */
 	public void scheduleVisual(int year, int month, Schedule scheduleDays) {
-		System.out.print("Would you like to view your schedule for this a day: ");
+		System.out.print("Would you like to view your schedule for this day? ");
 		String schedView = userInput.nextLine();
 		
 		// Exits if user does not want Schedule visualization
@@ -149,9 +194,8 @@ public class Interface {
 	}
 	
 	/**
-	 * Takes a year and month as a parameter
-	 * to access a Calendar instance in
-	 * calendars
+	 * Takes a year and month as a parameter to access
+	 * a Calendar instance in calendars.
 	 * 
 	 * @param year
 	 * @param month

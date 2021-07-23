@@ -109,6 +109,9 @@ public class Schedule {
 	 * @return String visualization of schedule 
 	 */
 	public String scheduleVisualizer() {
+		if (this.getEvents().isEmpty()) {
+			return "There are no events scheduled here.";
+		}
 		String ret = "";
 		for (int i = 0; i < this.getEvents().size(); i++) {
 			ret = ret + this.getEvents().get(i).toString() + " \n";

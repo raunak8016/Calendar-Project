@@ -66,6 +66,11 @@ public class Calendar {
         }
     }
 	
+	/**
+	 * @return the schedule within the calendar which has the
+	 * same month and year, but was not constructed with a
+	 * day value.
+	 */
 	public Schedule accessScheduleForUser(){
 		for (Schedule schedule : schedules) {
 			if (schedule.getYear() == year && schedule.getMonth().equals(Month.of(month).toString()) && schedule.getDay() == 0) {
@@ -75,20 +80,31 @@ public class Calendar {
 		return new Schedule(year, month);
 	}
 	
-	/*
-	 * getter method for year
+	/**
+	 * @return the year
 	 */
 	public int getYear() {
 		return year;
 	}
 	
-	/*
-	 * getter method for month
+	/**
+	 * @return the month
 	 */
 	public int getMonth() {
 		return month;
 	}
 	
+	/**
+	 * Static method which returns a String object that
+	 * is formatted for navigating through a HashMap
+	 * by String key value. Takes year and month values
+	 * as arguments instead of using instance variable
+	 * values.
+	 * 
+	 * @param year is the year of the Calendar instance.
+	 * @param month is the month of the Calendar instance.
+	 * @return formatted string for HashMap navigation.
+	 */
 	public static String toKeyFormattedString(int year, int month) {
 		return String.format("%s %s", year, Month.of(month).toString());
 	}

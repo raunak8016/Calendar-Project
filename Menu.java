@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Menu extends Interface{
 	
 	public void returnToMainMenu() {
-		System.out.println("\nreturning to main menu\n");
+		System.out.println("returning to main menu\n");
 		start();
 	}
 	
@@ -26,7 +26,7 @@ public class Menu extends Interface{
 					break;
 				}
 				else {
-					input = invalidInput(userInput);
+					input = invalidInput();
 				}
 			}
 			addCalendar();
@@ -52,7 +52,7 @@ public class Menu extends Interface{
 						exitApplication();
 						break;
 					default:
-						input = invalidInput(userInput);
+						input = invalidInput();
 				}
 			}
 		}
