@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Menu extends Interface{
 	/*
-	 * method to return to main menu
+	 * method to return to main menu 
 	 */
 	public void returnToMainMenu() {
 		System.out.println("\nreturning to main menu\n");

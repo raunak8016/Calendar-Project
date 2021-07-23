@@ -21,7 +21,7 @@ public class Interface {
 				+ "\nin the text next to the options to choose an action.\n");
 	}
 	/*
-	 * method to display options in the menu
+	 * method to display options in the menu 
 	 */
 	public void displayOptions() {
 		if (calendars.isEmpty()) {
