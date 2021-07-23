@@ -1,3 +1,4 @@
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Interface {
-	ArrayList<Calendar> calendars = new ArrayList<Calendar>();
+	HashMap<String, Calendar> calendars = new HashMap<String, Calendar>();
 	
 	public HashMap<String, Integer> returnYearandMonth() {
 		Scanner myObject = new Scanner(System.in);
@@ -27,21 +28,37 @@ public class Interface {
 		return ret;
 	}
 	
-	public void calendarVisual(int year, int month) {
-		/*
-		 * Presents Calendar month visualization
-		 * based on user input.
-		 */
-		Scanner myObj = new Scanner(System.in);
-		System.out.print("Would you like to see a visualization of that month? ");
-		String startVisual = myObj.nextLine();
+	public String showCalendars() {
+		return calendars.toString();
+	}
+	
+	public void addCalendar(){
+		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		
-		if (startVisual.equalsIgnoreCase("yes")) {
-			Calendar showUser = new Calendar(year, month);
-			calendars.add(showUser);
-			showUser.printMonth();
-			System.out.println("");
-		}
+		int year = calendarArgs.get("year");
+		int month = calendarArgs.get("month");
+		
+		Calendar newCalendar = accessCalendarForUser(year, month);
+		calendars.put(newCalendar.toString(), newCalendar);
+	}
+	
+	public void viewCalendar() {
+		System.out.println("\nHere are all of your current calendars."
+				+ "\nwhich one would you like to view?");
+		
+		System.out.println("\n" + calendars.keySet().toString());
+		
+		HashMap<String, Integer> calendarArgs = returnYearandMonth();
+		
+		int year = calendarArgs.get("year");
+		int month = calendarArgs.get("month");
+		
+		Calendar calendarInstance = calendars.get(String.format("%s %s", year, Month.of(month).toString()));
+		
+		if (calendarInstance != null)
+			seeCalendarVisualization(year, month);
+		else
+			System.out.println("Error: Calendar does not exist");
 	}
 	
 	public void addEventbyUser(int year, int month) {
@@ -98,40 +115,17 @@ public class Interface {
 	 * interface of the command prompt/terminal.
 	 */
 	public Calendar accessCalendarForUser(int year, int month) {
-		boolean calendarExists = false;
-		for (Calendar calendar : calendars) {
-			if (calendar.getYear() == year && calendar.getMonth() == month) {
-				calendarExists = true;
-				return calendar;
-			}
+		Calendar calendar = calendars.get(String.format("%s %s", year, Month.of(month).toString()));
+		if (calendar != null) {
+			return calendar;
 		}
-		return new Calendar(year, month);
+		else {
+			return new Calendar(year, month);
+		}
 	}
-		
+
 	public void seeCalendarVisualization(int year, int month) {
-		/*
-		 * Presents Calendar month visualization
-		 * based on user input.
-		 */
-
-		Scanner myObj = new Scanner(System.in);
-
-		System.out.print("\nWould you like to see a visualization of that month? \n"
-				+ "\n> yes"
-				+ "\n> no"
-				+ "\n> exit");
-
-		if (myObj.nextLine().equalsIgnoreCase("yes")) {
-			accessCalendarForUser(year, month).printMonth();
-		}
-		else if (myObj.nextLine().equalsIgnoreCase("no")) {
-			System.out.println("returning back to the main menu...\n");
-			//return to main;
-		}
-		else if (myObj.nextLine().equalsIgnoreCase("quit") || myObj.nextLine().equalsIgnoreCase("exit")) {
-			System.out.println("exiting application");
-			System.exit(0);
-		}
+		accessCalendarForUser(year, month).printMonth();
 	}
 	
 }

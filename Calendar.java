@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
@@ -74,5 +75,9 @@ public class Calendar {
 	public int getMonth() {
 		// TODO Auto-generated method stub
 		return month;
+	}
+	
+	public String toString() {
+		return String.format("%s %s", year, Month.of(month).toString());
 	}
 }
