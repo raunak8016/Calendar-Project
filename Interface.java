@@ -113,7 +113,7 @@ public class Interface {
 				+ "\n> exit");
 		/*
 		 * Presents Calendar month visualization
-		 * based on user input.
+		 * based on user input. 
 		 */
 		Scanner myObj = new Scanner(System.in);
 		String startVisual = myObj.nextLine();
