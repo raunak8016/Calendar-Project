@@ -8,18 +8,21 @@ import java.util.Scanner;
 
 public class Menu extends Interface{
 	
-	public void callMenu() {
+	public void welcome() {
 		System.out.println("Welcome to the new and improved Virtual Calendar,"
 				+ "\nyour very own calendar for scheduling events!\n"
 				+ "\nTo start, pick an option from the menu by typing"
 				+ "\nin the text next to the options to choose an action.");
-		
-		System.out.println("\n> Add a calendar ('add') ");
+		callMenu();
+	}
+	
+	public void callMenu() {
+		System.out.println("\n> Add a calendar ('add')\n ");
 		
 		Scanner myObject = new Scanner(System.in);
-		String input = myObject.nextLine();
 		
 		if (calendars.isEmpty()) {
+			String input = myObject.nextLine();
 			while (!input.equalsIgnoreCase("add")) {
 				if (input == "exit") {
 					System.out.println("exiting to main menu\n");
@@ -30,26 +33,28 @@ public class Menu extends Interface{
 					input = myObject.nextLine();
 				}
 			}
-			System.out.print("Enter year: ");
+			System.out.print("\nEnter year: ");
 			int year = myObject.nextInt();
 			myObject.nextLine();
 
-			System.out.print("Enter month number: ");
+			System.out.print("\nEnter month number: ");
 			int month = myObject.nextInt();
 			myObject.nextLine();
 			
 			calendars.add(accessCalendarForUser(year, month));
 			
 			System.out.println("Calendar successfully added!");
+			
+			this.callMenu();
 		}
 		else {
-			System.out.println("\n> Create a calendar ('create')"
+			System.out.println("> Create a calendar ('create')"
 					+ "\n> View calendar and events by date ('view')"
 					+ "\n> Schedule an event ('schedule')"
 					+ "\n> Exit application ('exit')");
 			boolean stayInLoop = true;
 			while (stayInLoop) {
-				input = myObject.nextLine();
+				String input = myObject.nextLine();
 				switch (input) {
 					case "create":
 						System.out.println("0");
@@ -69,6 +74,7 @@ public class Menu extends Interface{
 						System.out.println("Invalid input, please try again\n");
 				}
 			}
+			this.callMenu();
 		}
 	}
 	
@@ -78,7 +84,7 @@ public class Menu extends Interface{
 
 	public static void main(String[] args) {
 		Menu menu = new Menu();
-		menu.callMenu();
+		menu.welcome();
 	}
 
 }
