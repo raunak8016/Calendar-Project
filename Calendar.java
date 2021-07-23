@@ -32,6 +32,14 @@ public class Calendar {
 			System.out.println("Error");
 	}
 	
+	public int getYear() {
+		return year;
+	}
+	
+	public int getMonth() {
+		return month;
+	}
+	
 	/**
      * Code and structure implemented from 
      * https://stackoverflow.com/questions/
