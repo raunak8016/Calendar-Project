@@ -40,7 +40,8 @@ public class Event {
 	 * by copying all attribute values of another
 	 * instance
 	 * 
-	 * @param eventToCopy
+	 * @param eventToCopy the Event instanceo of
+	 * which to copy the instance variable values
 	 */
 	public Event(Event eventToCopy) {
 		this.eventName = eventToCopy.getEventName();
@@ -142,7 +143,7 @@ public class Event {
 	}
 	
 	/**
-	 * @return eventTimeFrame as String
+	 * @return eventTimeFrame as String in 12 hour format
 	 */
 	public String timeFrameToString() {
 		String first = "";
