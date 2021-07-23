@@ -114,6 +114,7 @@ public class Schedule {
 		}
 		String ret = "";
 		for (int i = 0; i < this.getEvents().size(); i++) {
+			System.out.println("");
 			ret = ret + this.getEvents().get(i).toString() + " \n";
 		}
 		return ret;
