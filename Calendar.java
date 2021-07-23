@@ -62,4 +62,14 @@ public class Calendar {
             }
         }
     }
+
+	public int getYear() {
+		// TODO Auto-generated method stub
+		return year;
+	}
+
+	public int getMonth() {
+		// TODO Auto-generated method stub
+		return month;
+	}
 }
