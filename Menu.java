@@ -20,7 +20,6 @@ public class Menu extends Interface{
 		String input = myObject.nextLine();
 		
 		if (calendars.isEmpty()) {
-			input = myObject.nextLine();
 			while (!input.equalsIgnoreCase("add")) {
 				if (input == "exit") {
 					System.out.println("exiting to main menu\n");
@@ -28,8 +27,20 @@ public class Menu extends Interface{
 				}
 				else {
 					System.out.println("Invalid input, please try again\n");
+					input = myObject.nextLine();
 				}
 			}
+			System.out.print("Enter year: ");
+			int year = myObject.nextInt();
+			myObject.nextLine();
+
+			System.out.print("Enter month number: ");
+			int month = myObject.nextInt();
+			myObject.nextLine();
+			
+			calendars.add(accessCalendarForUser(year, month));
+			
+			System.out.println("Calendar successfully added!");
 		}
 		else {
 			System.out.println("\n> Create a calendar ('create')"
