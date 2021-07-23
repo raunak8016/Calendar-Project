@@ -66,6 +66,13 @@ public class Calendar {
             }
         }
     }
+	
+//	public void accessScheduleForUser(){
+//		for (Schedule schedule : schedules) {
+//			
+//		}
+//	}
+	
 	/*
 	 * getter method for year
 	 */

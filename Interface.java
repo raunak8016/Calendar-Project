@@ -1,5 +1,4 @@
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -28,7 +27,30 @@ public class Interface {
 		return ret;
 	}
 	
-	public String showCalendars() {
+	public void displayWelcomeHeader() {
+		System.out.println("Welcome to the new and improved Virtual Calendar,"
+				+ "\nyour very own calendar for scheduling events!"
+				+ "\nTo start, pick an option from the menu by typing"
+				+ "\nin the text next to the options to choose an action.\n");
+	}
+	
+	public void displayOptions() {
+		if (calendars.isEmpty()) {
+			System.out.println("\n> Create a calendar ('create')");
+		} else {
+			System.out.println("\n> Add another calendar ('add')"
+					+ "\n> View calendar and events by date ('view')"
+					+ "\n> Schedule an event ('schedule')"
+					+ "\n> Exit application ('exit')\n");
+		}
+	}
+	
+	public String invalidInput(Scanner inputObject) {
+		System.out.println("Invalid input, please try again\n");
+		return inputObject.nextLine();
+	}
+	
+	public String getCalendars() {
 		return calendars.toString();
 	}
 	
@@ -40,6 +62,7 @@ public class Interface {
 		
 		Calendar newCalendar = accessCalendarForUser(year, month);
 		calendars.put(newCalendar.toString(), newCalendar);
+		System.out.println("\nCalendar successfully created!");
 	}
 	
 	public void viewCalendar() {
@@ -56,12 +79,17 @@ public class Interface {
 		Calendar calendarInstance = calendars.get(String.format("%s %s", year, Month.of(month).toString()));
 		
 		if (calendarInstance != null)
-			seeCalendarVisualization(year, month);
+			accessCalendarForUser(year, month).printMonth();
 		else
 			System.out.println("Error: Calendar does not exist");
 	}
 	
-	public void addEventbyUser(int year, int month) {
+	public void exitApplication() {
+		System.out.println("Exiting application");
+		System.exit(0);
+	}
+	
+	public void addEventForUser(int year, int month) {
 		Scanner myObj = new Scanner(System.in);
 		System.out.print("Would you like to add an event on a certain day in this calendar? ");
 		String addEvent = myObj.nextLine();
@@ -116,18 +144,10 @@ public class Interface {
 	 */
 	public Calendar accessCalendarForUser(int year, int month) {
 		Calendar calendar = calendars.get(String.format("%s %s", year, Month.of(month).toString()));
-		if (calendar != null) {
+		if (calendar != null)
 			return calendar;
-		}
-		else {
+		else
 			return new Calendar(year, month);
-		}
-	}
-
-	public void seeCalendarVisualization(int year, int month) {
-		accessCalendarForUser(year, month).printMonth();
 	}
 	
 }
-
-
