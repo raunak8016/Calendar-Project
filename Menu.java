@@ -37,7 +37,7 @@ public class Menu extends Interface{
 			int year = myObject.nextInt();
 			myObject.nextLine();
 
-			System.out.print("\nEnter month number: ");
+			System.out.print("\nEnter the number of the month you want (e.g. January is 1, February is 2...): ");
 			int month = myObject.nextInt();
 			myObject.nextLine();
 			
