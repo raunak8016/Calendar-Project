@@ -106,7 +106,7 @@ public class Interface {
 		return new Calendar(year, month);
 	}
 		
-	public void seeCalendarVisualization() {
+	public void seeCalendarVisualization(int year, int month) {
 		System.out.print("\nWould you like to see a visualization of that month? \n"
 				+ "\n> yes"
 				+ "\n> no"
@@ -116,33 +116,18 @@ public class Interface {
 		 * based on user input.
 		 */
 		Scanner myObj = new Scanner(System.in);
-		System.out.print("Would you like to see a visualization of that month? ");
 		String startVisual = myObj.nextLine();
-		
-		System.out.print("Enter year: ");
-		int year = myObj.nextInt();
-		myObj.nextLine();
-		
-		System.out.print("Enter month number: ");
-		int month = myObj.nextInt();
-		myObj.nextLine();
-		
-		while (true) {
-			if (myObj.nextLine().equalsIgnoreCase("yes")) {
-				accessCalendarForUser().printMonth();
-				break;
-			}
-			else if (myObj.nextLine().equalsIgnoreCase("no")) {
-				System.out.println("returning back to the main menu...\n");
-				break;
-			}
-			else if (myObj.nextLine().equalsIgnoreCase("quit") || myObj.nextLine().equalsIgnoreCase("exit")) {
-				System.out.println("exiting application");
-				System.exit(0);
-			}
-			else {
-				System.out.println("Invalid input, try again");
-			}
+
+		if (startVisual.equalsIgnoreCase("yes")) {
+			accessCalendarForUser().printMonth();
+		}
+		else if (startVisual.equalsIgnoreCase("no")) {
+			System.out.println("returning back to the main menu...\n");
+			//return menu;
+		}
+		else if (startVisual.equalsIgnoreCase("quit") || startVisual.equalsIgnoreCase("exit")) {
+			System.out.println("exiting application");
+			System.exit(0);
 		}
 	}
 }
