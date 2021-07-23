@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,6 +8,8 @@ import java.util.Scanner;
  */
 
 public class Interface {
+	ArrayList<Calendar> calendars = new ArrayList<Calendar>();
+	
 	public void calendarVisual(int year, int month) {
 		/*
 		 * Presents Calendar month visualization
@@ -18,6 +21,7 @@ public class Interface {
 		
 		if (startVisual.equalsIgnoreCase("yes")) {
 			Calendar showUser = new Calendar(year, month);
+			calendars.add(showUser);
 			showUser.printMonth();
 			System.out.println("");
 		}
@@ -58,6 +62,7 @@ public class Interface {
 			addEvent = myObj.nextLine();
 		}
 	}
+	
 	public void scheduleVisual(int year, int month, Schedule scheduleDays) {
 		Scanner myObj = new Scanner(System.in);
 		System.out.print("Would you like to view your schedule for this a day: ");
@@ -76,8 +81,6 @@ public class Interface {
 	 * interface of the command prompt/terminal.
 	 */
 	public void run() {
-		// Start of interface
-		System.out.println("Welcome to the Virtual Calendar! ");
 		Scanner myObj = new Scanner(System.in);
 		/*
 		 *  Gets information for Calendar
@@ -90,14 +93,29 @@ public class Interface {
 		System.out.print("Enter month number: ");
 		int month = myObj.nextInt();
 		myObj.nextLine();
-	}
-	
-	/**
-	 * Runs application with run() method.
-	 */
-	public static void main(String[] args) {
-		Interface calendar = new Interface();
-		calendar.run();
+		
+		System.out.print("\nWould you like to see a visualization of that month? \n"
+				+ "\n> yes"
+				+ "\n> no"
+				+ "\n> exit");
+		
+		while (true) {
+			if (myObj.nextLine().equalsIgnoreCase("yes")) {
+				calendarVisual(year, month);
+				break;
+			}
+			else if (myObj.nextLine().equalsIgnoreCase("no")) {
+				System.out.println("returning back to the main menu...\n");
+				break;
+			}
+			else if (myObj.nextLine().equalsIgnoreCase("quit") || myObj.nextLine().equalsIgnoreCase("exit")) {
+				System.out.println("exiting application");
+				System.exit(0);
+			}
+			else {
+				System.out.println("Invalid input, try again");
+			}
+		}
 	}
 
 }
