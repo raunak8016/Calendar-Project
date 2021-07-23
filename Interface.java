@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 
  */
 
-public class AppRunner {
+public class Interface {
 	/**
 	 * This method runs the entire application
 	 * along with providing the text-based
@@ -97,7 +97,7 @@ public class AppRunner {
 	 * Runs application with run() method.
 	 */
 	public static void main(String[] args) {
-		AppRunner calendar = new AppRunner();
+		Interface calendar = new Interface();
 		calendar.run();
 	}
 
