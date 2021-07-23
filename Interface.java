@@ -28,7 +28,7 @@ public class Interface {
 		if (calendars.isEmpty()) {
 			System.out.println("\n> Create a calendar ('create')");
 		} else {
-			System.out.println("\n> Add another calendar ('add')"
+			System.out.println("\n> Add another calendar ('create')"
 					+ "\n> View calendar and events by date ('view')"
 					+ "\n> Schedule an event ('schedule')"
 					+ "\n> Exit application ('exit')\n");
@@ -101,15 +101,18 @@ public class Interface {
 		Calendar calendarInstance = calendars.get(Calendar.toKeyFormattedString(year, month));
 		
 		if (calendarInstance != null) {
+			System.out.println("");
 			calendarInstance.printMonth();
-			System.out.println("Would you like to view a schedule? ");
+			System.out.println("");
+			/*System.out.println("\n+Would you like to view a schedule? ");
 			switch (userInput.nextLine()) {
 				case "yes":
 					scheduleVisual(year, month, calendarInstance.accessScheduleForUser());
 					break;
 				default:
 					break;
-			}
+			}*/
+			
 		}
 		else
 			System.out.println("Error: Calendar does not exist ");
@@ -118,11 +121,15 @@ public class Interface {
 	 * Method to schedule an Event for a user on a certain day
 	 */
 	public void scheduleEventForUser() {
+		System.out.println("\nHere are all of your current calendars."
+				+ "\nwhich one would you like to create a schedule for?");
+		
+		System.out.println("\n" + calendars.keySet().toString()); //display list of calendars
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		int year = calendarArgs.get("year");
 		int month = calendarArgs.get("month");
 		
-		System.out.print("Would you like to add an event on a certain day in this calendar? ");
+		System.out.print("Would you like to add an event to your schedule? ");
 		String addEvent = userInput.nextLine();
 		// Creates Schedule instance.
 		Schedule scheduleDays = calendars.get(Calendar.toKeyFormattedString(year, month)).accessScheduleForUser();
@@ -151,20 +158,20 @@ public class Interface {
 			scheduleDays.getEvents().add(new Event(eventInfo[0], Integer.parseInt(eventInfo[1]), month, year, timeArray));
 			
 			// Continues conditional loop for adding events to Schedule instance.
-			System.out.print("Would you like to add another event on this day? ");
+			System.out.print("Would you like to add another event to your schedule? ");
 			addEvent = userInput.nextLine();
 		}
+		this.scheduleVisual(year, month, scheduleDays);
 	}
 	
 	public void scheduleVisual(int year, int month, Schedule scheduleDays) {
-		System.out.print("Would you like to view your schedule for this a day: ");
-		String schedView = userInput.nextLine();
-		
+		System.out.print("Would you like to view your schedule: ");
+		String schedView = userInput.nextLine();		
 		// Exits if user does not want Schedule visualization
 		if(schedView.equalsIgnoreCase("no"))
 			System.exit(0);
 		else if (schedView.equalsIgnoreCase("yes"))
-				System.out.println(scheduleDays.scheduleVisualizer());
+			System.out.println(scheduleDays.scheduleVisualizer());
 	}
 	
 	/**

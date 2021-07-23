@@ -61,11 +61,11 @@ public class Schedule {
 	 * @return events as an ArrayList
 	 */
 	public ArrayList<Event> getEvents() {
-		ArrayList<Event> newEventList = new ArrayList<Event>();
+		/*ArrayList<Event> newEventList = new ArrayList<Event>();
 		for (Event event : this.events) {
 			newEventList.add(event);
-		}
-		return newEventList;
+		}*/ //why do we have this, it screws up schedule menu
+		return events;
 	}
 	
 	/**

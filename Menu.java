@@ -44,12 +44,15 @@ public class Menu extends Interface{
 				switch (input) {
 					case "create":
 						addCalendar();
+						returnToMainMenu();
 						break;
 					case "view":
 						viewCalendar();
+						returnToMainMenu();
 						break;
 					case "schedule":
 						scheduleEventForUser();
+						returnToMainMenu();
 						break;
 					case "return":
 						returnToMainMenu();
