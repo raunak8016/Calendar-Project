@@ -80,44 +80,24 @@ public class Interface {
 	 * along with providing the text-based
 	 * interface of the command prompt/terminal.
 	 */
-	public Calendar accessCalendarForUser() {
-		Scanner myObj = new Scanner(System.in);
-		/*
-		 *  Gets information for Calendar
-		 *  year and month.
-		 */
-		System.out.print("Enter year: ");
-		int year = myObj.nextInt();
-		myObj.nextLine();
-		
-		System.out.print("Enter month number: ");
-		int month = myObj.nextInt();
-		myObj.nextLine();
-		
+	public Calendar accessCalendarForUser(int year, int month) {
 		boolean calendarExists = false;
-		
 		for (Calendar calendar : calendars) {
 			if (calendar.getYear() == year && calendar.getMonth() == month) {
 				calendarExists = true;
 				return calendar;
 			}
 		}
-		
 		return new Calendar(year, month);
 	}
 		
 	public void seeCalendarVisualization() {
-		System.out.print("\nWould you like to see a visualization of that month? \n"
-				+ "\n> yes"
-				+ "\n> no"
-				+ "\n> exit");
 		/*
 		 * Presents Calendar month visualization
 		 * based on user input.
 		 */
+		
 		Scanner myObj = new Scanner(System.in);
-		System.out.print("Would you like to see a visualization of that month? ");
-		String startVisual = myObj.nextLine();
 		
 		System.out.print("Enter year: ");
 		int year = myObj.nextInt();
@@ -126,10 +106,15 @@ public class Interface {
 		System.out.print("Enter month number: ");
 		int month = myObj.nextInt();
 		myObj.nextLine();
+
+		System.out.print("\nWould you like to see a visualization of that month? \n"
+				+ "\n> yes"
+				+ "\n> no"
+				+ "\n> exit");
 		
 		while (true) {
 			if (myObj.nextLine().equalsIgnoreCase("yes")) {
-				accessCalendarForUser().printMonth();
+				accessCalendarForUser(year, month).printMonth();
 				break;
 			}
 			else if (myObj.nextLine().equalsIgnoreCase("no")) {
@@ -139,6 +124,7 @@ public class Interface {
 			else if (myObj.nextLine().equalsIgnoreCase("quit") || myObj.nextLine().equalsIgnoreCase("exit")) {
 				System.out.println("exiting application");
 				System.exit(0);
+				break;
 			}
 			else {
 				System.out.println("Invalid input, try again");
