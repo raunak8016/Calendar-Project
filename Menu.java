@@ -17,7 +17,7 @@ public class Menu extends Interface{
 	}
 	
 	public void callMenu() {
-		System.out.println("\n> Add a calendar ('add')\n ");
+		System.out.println("\n> Add a calendar ('add')");
 		
 		Scanner myObject = new Scanner(System.in);
 		
@@ -57,14 +57,36 @@ public class Menu extends Interface{
 				String input = myObject.nextLine();
 				switch (input) {
 					case "create":
-						System.out.println("0");
+						System.out.print("\nEnter year: ");
+						int year = myObject.nextInt();
+						myObject.nextLine();
+
+						System.out.print("\nEnter month number: ");
+						int month = myObject.nextInt();
+						myObject.nextLine();
 						
+						calendars.add(accessCalendarForUser(year, month));
 						break;
 					case "view":
-						System.out.println("1");
+						System.out.print("\nEnter year: ");
+						year = myObject.nextInt();
+						myObject.nextLine();
+
+						System.out.print("\nEnter month number: ");
+						month = myObject.nextInt();
+						myObject.nextLine();
+						
+						seeCalendarVisualization(year, month);
 						break;
 					case "schedule":
-						System.out.println("2");
+						System.out.print("\nEnter year: ");
+						year = myObject.nextInt();
+						myObject.nextLine();
+
+						System.out.print("\nEnter month number: ");
+						month = myObject.nextInt();
+						myObject.nextLine();
+						
 						break;
 					case "exit":
 						System.out.println("3");
