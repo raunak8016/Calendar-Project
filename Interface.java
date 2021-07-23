@@ -80,7 +80,7 @@ public class Interface {
 	 * along with providing the text-based
 	 * interface of the command prompt/terminal.
 	 */
-	public void run() {
+	public Calendar accessCalendarForUser() {
 		Scanner myObj = new Scanner(System.in);
 		/*
 		 *  Gets information for Calendar
@@ -94,14 +94,42 @@ public class Interface {
 		int month = myObj.nextInt();
 		myObj.nextLine();
 		
+		boolean calendarExists = false;
+		
+		for (Calendar calendar : calendars) {
+			if (calendar.getYear() == year && calendar.getMonth() == month) {
+				calendarExists = true;
+				return calendar;
+			}
+		}
+		
+		return new Calendar(year, month);
+	}
+		
+	public void seeCalendarVisualization() {
 		System.out.print("\nWould you like to see a visualization of that month? \n"
 				+ "\n> yes"
 				+ "\n> no"
 				+ "\n> exit");
+		/*
+		 * Presents Calendar month visualization
+		 * based on user input.
+		 */
+		Scanner myObj = new Scanner(System.in);
+		System.out.print("Would you like to see a visualization of that month? ");
+		String startVisual = myObj.nextLine();
+		
+		System.out.print("Enter year: ");
+		int year = myObj.nextInt();
+		myObj.nextLine();
+		
+		System.out.print("Enter month number: ");
+		int month = myObj.nextInt();
+		myObj.nextLine();
 		
 		while (true) {
 			if (myObj.nextLine().equalsIgnoreCase("yes")) {
-				calendarVisual(year, month);
+				accessCalendarForUser().printMonth();
 				break;
 			}
 			else if (myObj.nextLine().equalsIgnoreCase("no")) {
@@ -117,5 +145,4 @@ public class Interface {
 			}
 		}
 	}
-
 }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -43,6 +42,7 @@ public class Menu extends Interface{
 				switch (input) {
 					case "create":
 						System.out.println("0");
+						
 						break;
 					case "view":
 						System.out.println("1");
@@ -60,6 +60,7 @@ public class Menu extends Interface{
 			}
 		}
 	}
+	
 	public String toString() {
 		return "xyz";
 	}
