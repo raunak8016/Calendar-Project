@@ -11,14 +11,18 @@ import java.util.Scanner;
 public class Interface {
 	HashMap<String, Calendar> calendars = new HashMap<String, Calendar>();
 	Scanner userInput = new Scanner(System.in);
-	
+	/*
+	 * Displays welcome header when program is first run
+	 */
 	public void displayWelcomeHeader() {
 		System.out.println("Welcome to the new and improved Virtual Calendar,"
 				+ "\nyour very own calendar for scheduling events!"
 				+ "\nTo start, pick an option from the menu by typing"
 				+ "\nin the text next to the options to choose an action.\n");
 	}
-	
+	/*
+	 * method to display options in the menu
+	 */
 	public void displayOptions() {
 		if (calendars.isEmpty()) {
 			System.out.println("\n> Create a calendar ('create')");
@@ -29,52 +33,64 @@ public class Interface {
 					+ "\n> Exit application ('exit')\n");
 		}
 	}
-	
+	/*
+	 * Invalid input method printout
+	 */
 	public String invalidInput(Scanner inputObject) {
 		System.out.println("Invalid input, please try again\n");
 		return inputObject.nextLine();
 	}
-	
+	/*
+	 * Exit application printout method
+	 */
 	public void exitApplication() {
 		System.out.println("Exiting application");
 		System.exit(0);
 	}
-	
+	/*
+	 * Returns the year and month as a hashmap after receiving user input
+	 */
 	public HashMap<String, Integer> returnYearandMonth() {
 		System.out.print("\nEnter year: ");
-		int year = userInput.nextInt();
+		int year = userInput.nextInt(); //user input for year
 		userInput.nextLine();
 
 		System.out.print("\nEnter month number: ");
-		int month = userInput.nextInt();
+		int month = userInput.nextInt(); //user input for month
 		userInput.nextLine();
 		
-		HashMap<String, Integer> ret = new HashMap<String, Integer>();
+		HashMap<String, Integer> ret = new HashMap<String, Integer>(); //store information as a Hashmap
 		ret.put("year", year);
 		ret.put("month", month);
-		return ret;
+		return ret; //return Hashmap
 	}
-	
+	/*
+	 * method to return calendars as a string
+	 */
 	public String getCalendars() {
 		return calendars.toString();
 	}
-	
+	/*
+	 * method to add a new calendar to the list of Calendars
+	 */
 	public void addCalendar(){
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		
-		int year = calendarArgs.get("year");
-		int month = calendarArgs.get("month");
+		int year = calendarArgs.get("year"); //fetch year from Hashmap
+		int month = calendarArgs.get("month"); //fetch month from Hashmap
 		
 		Calendar newCalendar = accessCalendarForUser(year, month);
-		calendars.put(newCalendar.toString(), newCalendar);
+		calendars.put(newCalendar.toString(), newCalendar); //add NewCalendar to Calendars hashmap
 		System.out.println("\nCalendar successfully created!\n");
 	}
-	
+	/*
+	 * Method to view a calendar from the Hashmap calendars
+	 */
 	public void viewCalendar() {
 		System.out.println("\nHere are all of your current calendars."
 				+ "\nwhich one would you like to view?");
 		
-		System.out.println("\n" + calendars.keySet().toString());
+		System.out.println("\n" + calendars.keySet().toString()); //display list of calendars
 		
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		
@@ -97,7 +113,9 @@ public class Interface {
 		else
 			System.out.println("Error: Calendar does not exist ");
 	}
-	
+	/*
+	 * Method to schedule an Event for a user on a certain day
+	 */
 	public void scheduleEventForUser() {
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		int year = calendarArgs.get("year");

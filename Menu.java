@@ -7,16 +7,21 @@ import java.util.Scanner;
  */
 
 public class Menu extends Interface{
-	
+	/*
+	 * method to return to main menu
+	 */
 	public void returnToMainMenu() {
 		System.out.println("\nreturning to main menu\n");
 		start();
 	}
-	
+	/*
+	 * Method which initializes the entire application and connects all the menu options through
+	 * the interface methods
+	 */
 	public void start() {
-		if (calendars.isEmpty()) displayWelcomeHeader();
+		if (calendars.isEmpty()) displayWelcomeHeader(); //if there are no Calendars created, the welcome banner is first displayed
 		
-		displayOptions();
+		displayOptions(); //menu options are displayed
 		
 		if (calendars.isEmpty()) {
 			String input = userInput.nextLine();
@@ -32,8 +37,9 @@ public class Menu extends Interface{
 			addCalendar();
 		}
 		else {
+			//code for the menu functionality
 			boolean stayInLoop = true;
-			while (stayInLoop) {
+			while (stayInLoop) { //while inside the foreloop the menu will be displayed after each user input runs 
 				String input = userInput.nextLine();
 				switch (input) {
 					case "create":
