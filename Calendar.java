@@ -10,9 +10,9 @@ import java.util.ArrayList;
  */
 
 public class Calendar {
+	ArrayList<Schedule> schedules = new ArrayList<Schedule>();
 	private int year;
 	private int month;
-	ArrayList<Schedule> schedules = new ArrayList<Schedule>();
 	
 	/**
 	 * Constructor for Calendar object which
@@ -34,7 +34,6 @@ public class Calendar {
 		else
 			System.out.println("Error");
 	}
-	
 	
 	/**
      * Code and structure implemented from 
@@ -67,25 +66,31 @@ public class Calendar {
         }
     }
 	
-//	public void accessScheduleForUser(){
-//		for (Schedule schedule : schedules) {
-//			
-//		}
-//	}
+	public Schedule accessScheduleForUser(){
+		for (Schedule schedule : schedules) {
+			if (schedule.getYear() == year && schedule.getMonth().equals(Month.of(month).toString()) && schedule.getDay() == 0) {
+				return schedule;
+			}
+		}
+		return new Schedule(year, month);
+	}
 	
 	/*
 	 * getter method for year
 	 */
 	public int getYear() {
-		// TODO Auto-generated method stub
 		return year;
 	}
+	
 	/*
 	 * getter method for month
 	 */
 	public int getMonth() {
-		// TODO Auto-generated method stub
 		return month;
+	}
+	
+	public static String toKeyFormattedString(int year, int month) {
+		return String.format("%s %s", year, Month.of(month).toString());
 	}
 	
 	public String toString() {

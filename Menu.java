@@ -18,17 +18,15 @@ public class Menu extends Interface{
 		
 		displayOptions();
 		
-		Scanner myObject = new Scanner(System.in);
-		
 		if (calendars.isEmpty()) {
-			String input = myObject.nextLine();
+			String input = userInput.nextLine();
 			while (!input.equalsIgnoreCase("create")) {
 				if (input == "exit") {
 					returnToMainMenu();
 					break;
 				}
 				else {
-					input = invalidInput(myObject);
+					input = invalidInput(userInput);
 				}
 			}
 			addCalendar();
@@ -36,7 +34,7 @@ public class Menu extends Interface{
 		else {
 			boolean stayInLoop = true;
 			while (stayInLoop) {
-				String input = myObject.nextLine();
+				String input = userInput.nextLine();
 				switch (input) {
 					case "create":
 						addCalendar();
@@ -45,7 +43,7 @@ public class Menu extends Interface{
 						viewCalendar();
 						break;
 					case "schedule":
-						returnYearandMonth();
+						scheduleEventForUser();
 						break;
 					case "return":
 						returnToMainMenu();
@@ -54,7 +52,7 @@ public class Menu extends Interface{
 						exitApplication();
 						break;
 					default:
-						input = invalidInput(myObject);
+						input = invalidInput(userInput);
 				}
 			}
 		}

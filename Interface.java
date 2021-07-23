@@ -10,22 +10,7 @@ import java.util.Scanner;
 
 public class Interface {
 	HashMap<String, Calendar> calendars = new HashMap<String, Calendar>();
-	
-	public HashMap<String, Integer> returnYearandMonth() {
-		Scanner myObject = new Scanner(System.in);
-		System.out.print("\nEnter year: ");
-		int year = myObject.nextInt();
-		myObject.nextLine();
-
-		System.out.print("\nEnter month number: ");
-		int month = myObject.nextInt();
-		myObject.nextLine();
-		
-		HashMap<String, Integer> ret = new HashMap<String, Integer>();
-		ret.put("year", year);
-		ret.put("month", month);
-		return ret;
-	}
+	Scanner userInput = new Scanner(System.in);
 	
 	public void displayWelcomeHeader() {
 		System.out.println("Welcome to the new and improved Virtual Calendar,"
@@ -50,6 +35,26 @@ public class Interface {
 		return inputObject.nextLine();
 	}
 	
+	public void exitApplication() {
+		System.out.println("Exiting application");
+		System.exit(0);
+	}
+	
+	public HashMap<String, Integer> returnYearandMonth() {
+		System.out.print("\nEnter year: ");
+		int year = userInput.nextInt();
+		userInput.nextLine();
+
+		System.out.print("\nEnter month number: ");
+		int month = userInput.nextInt();
+		userInput.nextLine();
+		
+		HashMap<String, Integer> ret = new HashMap<String, Integer>();
+		ret.put("year", year);
+		ret.put("month", month);
+		return ret;
+	}
+	
 	public String getCalendars() {
 		return calendars.toString();
 	}
@@ -62,7 +67,7 @@ public class Interface {
 		
 		Calendar newCalendar = accessCalendarForUser(year, month);
 		calendars.put(newCalendar.toString(), newCalendar);
-		System.out.println("\nCalendar successfully created!");
+		System.out.println("\nCalendar successfully created!\n");
 	}
 	
 	public void viewCalendar() {
@@ -76,25 +81,32 @@ public class Interface {
 		int year = calendarArgs.get("year");
 		int month = calendarArgs.get("month");
 		
-		Calendar calendarInstance = calendars.get(String.format("%s %s", year, Month.of(month).toString()));
+		Calendar calendarInstance = calendars.get(Calendar.toKeyFormattedString(year, month));
 		
-		if (calendarInstance != null)
-			accessCalendarForUser(year, month).printMonth();
+		if (calendarInstance != null) {
+			calendarInstance.printMonth();
+			System.out.println("Would you like to view a schedule? ");
+			switch (userInput.nextLine()) {
+				case "yes":
+					scheduleVisual(year, month, calendarInstance.accessScheduleForUser());
+					break;
+				default:
+					break;
+			}
+		}
 		else
-			System.out.println("Error: Calendar does not exist");
+			System.out.println("Error: Calendar does not exist ");
 	}
 	
-	public void exitApplication() {
-		System.out.println("Exiting application");
-		System.exit(0);
-	}
-	
-	public void addEventForUser(int year, int month) {
-		Scanner myObj = new Scanner(System.in);
+	public void scheduleEventForUser() {
+		HashMap<String, Integer> calendarArgs = returnYearandMonth();
+		int year = calendarArgs.get("year");
+		int month = calendarArgs.get("month");
+		
 		System.out.print("Would you like to add an event on a certain day in this calendar? ");
-		String addEvent = myObj.nextLine();
+		String addEvent = userInput.nextLine();
 		// Creates Schedule instance.
-		Schedule scheduleDays = new Schedule(year, month);
+		Schedule scheduleDays = calendars.get(Calendar.toKeyFormattedString(year, month)).accessScheduleForUser();
 
 		/*
 		 * Keeps a while loop that only breaks once the user does not want to add more events
@@ -109,7 +121,7 @@ public class Interface {
 			 */
 			double[] timeArray = new double[2];
 			// Takes and splits user input for arguments.
-			String Event = myObj.nextLine();
+			String Event = userInput.nextLine();
 			String[] eventInfo = Event.split(", ");
 
 			// Adds values to timeArray to pass as argument for eventTimeFrame.
@@ -121,14 +133,13 @@ public class Interface {
 			
 			// Continues conditional loop for adding events to Schedule instance.
 			System.out.print("Would you like to add another event on this day? ");
-			addEvent = myObj.nextLine();
+			addEvent = userInput.nextLine();
 		}
 	}
 	
 	public void scheduleVisual(int year, int month, Schedule scheduleDays) {
-		Scanner myObj = new Scanner(System.in);
 		System.out.print("Would you like to view your schedule for this a day: ");
-		String schedView = myObj.nextLine();
+		String schedView = userInput.nextLine();
 		
 		// Exits if user does not want Schedule visualization
 		if(schedView.equalsIgnoreCase("no"))
@@ -138,12 +149,16 @@ public class Interface {
 	}
 	
 	/**
-	 * This method runs the entire application
-	 * along with providing the text-based
-	 * interface of the command prompt/terminal.
+	 * Takes a year and month as a parameter
+	 * to access a Calendar instance in
+	 * calendars
+	 * 
+	 * @param year
+	 * @param month
+	 * @return
 	 */
 	public Calendar accessCalendarForUser(int year, int month) {
-		Calendar calendar = calendars.get(String.format("%s %s", year, Month.of(month).toString()));
+		Calendar calendar = calendars.get(Calendar.toKeyFormattedString(year, month));
 		if (calendar != null)
 			return calendar;
 		else

@@ -78,6 +78,14 @@ public class Schedule {
 	/**
 	 * @return the scheduleDay
 	 */
+	public String getMonth() {
+		String scheduleMonthCopy = new String(scheduleMonth);
+		return scheduleMonthCopy;
+	}
+	
+	/**
+	 * @return the scheduleDay
+	 */
 	public int getDay() {
 		return scheduleDay;
 	}
