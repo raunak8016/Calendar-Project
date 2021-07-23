@@ -65,12 +65,16 @@ public class Calendar {
             }
         }
     }
-
+	/*
+	 * getter method for year
+	 */
 	public int getYear() {
 		// TODO Auto-generated method stub
 		return year;
 	}
-
+	/*
+	 * getter method for month
+	 */
 	public int getMonth() {
 		// TODO Auto-generated method stub
 		return month;
