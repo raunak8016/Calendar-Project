@@ -90,7 +90,7 @@ public class Interface {
 
 			// Adds Event instance.
 			scheduleDays.getEvents().add(new Event(eventInfo[0], Integer.parseInt(eventInfo[1]), month, year, timeArray));
-
+			
 			// Continues conditional loop for adding events to Schedule instance.
 			System.out.print("Would you like to add another event on this day? ");
 			addEvent = myObj.nextLine();
