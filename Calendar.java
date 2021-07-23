@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.ArrayList;
 
 /**
  * 
@@ -10,6 +11,7 @@ import java.time.YearMonth;
 public class Calendar {
 	private int year;
 	private int month;
+	ArrayList<Schedule> schedules = new ArrayList<Schedule>();
 	
 	/**
 	 * Constructor for Calendar object which

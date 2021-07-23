@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -9,9 +10,8 @@ import java.util.Scanner;
 
 public class Interface {
 	ArrayList<Calendar> calendars = new ArrayList<Calendar>();
-	ArrayList<Schedule> scheduleDays = new ArrayList<Schedule>();
 	
-	public int[] returnYearandMonth() {
+	public HashMap<String, Integer> returnYearandMonth() {
 		Scanner myObject = new Scanner(System.in);
 		System.out.print("\nEnter year: ");
 		int year = myObject.nextInt();
@@ -20,9 +20,10 @@ public class Interface {
 		System.out.print("\nEnter month number: ");
 		int month = myObject.nextInt();
 		myObject.nextLine();
-		int[] ret = new int[2];
-		ret[0]=year;
-		ret[1]=month;
+		
+		HashMap<String, Integer> ret = new HashMap<String, Integer>();
+		ret.put("year", year);
+		ret.put("month", month);
 		return ret;
 	}
 	
@@ -79,7 +80,7 @@ public class Interface {
 		}
 	}
 	
-	public void scheduleVisual(int year, int month) {
+	public void scheduleVisual(int year, int month, Schedule scheduleDays) {
 		Scanner myObj = new Scanner(System.in);
 		System.out.print("Would you like to view your schedule for this a day: ");
 		String schedView = myObj.nextLine();

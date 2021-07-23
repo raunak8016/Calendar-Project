@@ -48,12 +48,12 @@ public class Menu extends Interface{
 			this.callMenu();
 		}
 		else {
-			System.out.println("> Create a calendar ('create')"
-					+ "\n> View calendar and events by date ('view')"
-					+ "\n> Schedule an event ('schedule')"
-					+ "\n> Exit application ('exit')");
 			boolean stayInLoop = true;
 			while (stayInLoop) {
+				System.out.println("> Create a calendar ('create')"
+						+ "\n> View calendar and events by date ('view')"
+						+ "\n> Schedule an event ('schedule')"
+						+ "\n> Exit application ('exit')");
 				String input = myObject.nextLine();
 				switch (input) {
 					case "create":
