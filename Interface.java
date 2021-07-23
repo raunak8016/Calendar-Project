@@ -9,6 +9,22 @@ import java.util.Scanner;
 
 public class Interface {
 	ArrayList<Calendar> calendars = new ArrayList<Calendar>();
+	ArrayList<Schedule> scheduleDays = new ArrayList<Schedule>();
+	
+	public int[] returnYearandMonth() {
+		Scanner myObject = new Scanner(System.in);
+		System.out.print("\nEnter year: ");
+		int year = myObject.nextInt();
+		myObject.nextLine();
+
+		System.out.print("\nEnter month number: ");
+		int month = myObject.nextInt();
+		myObject.nextLine();
+		int[] ret = new int[2];
+		ret[0]=year;
+		ret[1]=month;
+		return ret;
+	}
 	
 	public void calendarVisual(int year, int month) {
 		/*
@@ -63,7 +79,7 @@ public class Interface {
 		}
 	}
 	
-	public void scheduleVisual(int year, int month, Schedule scheduleDays) {
+	public void scheduleVisual(int year, int month) {
 		Scanner myObj = new Scanner(System.in);
 		System.out.print("Would you like to view your schedule for this a day: ");
 		String schedView = myObj.nextLine();
