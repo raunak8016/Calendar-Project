@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane prefHeight="445.0" prefWidth="610.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <top>
+      <Pane prefHeight="19.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="8.0" layoutY="1.0" prefHeight="17.0" prefWidth="284.0" text="Calendars" />
+            <Label layoutX="305.0" layoutY="1.0" prefHeight="17.0" prefWidth="305.0" text="Schedules &amp; Date Picker" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <ScrollPane prefHeight="280.0" prefWidth="329.0" VBox.vgrow="ALWAYS">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="319.0" prefWidth="289.0" />
+                    </content>
+                  </ScrollPane>
+                  <HBox prefHeight="24.0" prefWidth="305.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="262.0" text="Select" HBox.hgrow="NEVER" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="269.0" text="Create/Add" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <DatePicker prefHeight="25.0" prefWidth="306.0" />
+                  <ScrollPane prefHeight="314.0" prefWidth="305.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="291.0">
+                           <children>
+                              <ListView prefHeight="298.0" prefWidth="305.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <HBox prefHeight="23.0" prefWidth="305.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="167.0" text="View" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Select" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Create/Add" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <VBox prefHeight="168.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Events Scheduled" />
+            <ScrollPane prefHeight="151.0" prefWidth="610.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="126.0" prefWidth="597.0">
+                     <children>
+                        <ListView prefHeight="128.0" prefWidth="610.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <HBox prefHeight="30.0" prefWidth="610.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="214.0" text="View" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="214.0" text="Select" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="214.0" text="Create/Add" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="220.0" text="Delete" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

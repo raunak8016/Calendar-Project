@@ -1,7 +1,11 @@
+package application;
 
-import java.time.Month;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import models.Calendar;
+import models.Event;
+import models.Schedule;
 
 /**
  * 
