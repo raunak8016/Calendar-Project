@@ -41,4 +41,14 @@ public class StartViewController {
     	
     }
 
+	public void linkWithApplication(GUIApplication guiApplication) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void linkWithApplication(GUIApplication guiApplication) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
