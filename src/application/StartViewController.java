@@ -31,7 +31,6 @@ public class StartViewController {
     			year = Integer.parseInt(yearField.getText());
         		month = Integer.parseInt(monthField.getText());
         		Calendar userGen = new Calendar(year, month);
-        		System.out.println(userGen.toString());
     		}
     		else {
     			topLabelMessage.setText("Invalid numbers entered for year and month");
