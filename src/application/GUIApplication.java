@@ -24,7 +24,7 @@ import javafx.scene.layout.BorderPane;
 public class GUIApplication extends Application {
 	private Stage primaryStage;
 	
-	private void startView() {
+	public void startView() {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;
 		try {
@@ -50,6 +50,7 @@ public class GUIApplication extends Application {
 
 			BorderPane root = loader.load(new FileInputStream("src/views/MainView.fxml"));
 			MainViewController mainViewController = loader.getController();
+			mainViewController.linkWithApplication(this);
 			mainViewController.setCalendar(year, month);
 			scene = new Scene(root,700,500);
 			primaryStage.setScene(scene);
@@ -62,6 +63,23 @@ public class GUIApplication extends Application {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+	
+	public void calendarView() {
+		FXMLLoader loader = new FXMLLoader();
+		Scene scene;
+		try {
+			Parent setupView = (Parent) loader.load(new FileInputStream("src/views/CalendarView.fxml"));
+			scene = new Scene(setupView, 200, 200);
+			Stage stage = new Stage();
+	        stage.setTitle("New Window");
+	        stage.setScene(scene);
+	        stage.show();		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

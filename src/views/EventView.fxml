@@ -57,7 +57,7 @@
    <bottom>
       <Pane prefHeight="30.0" prefWidth="279.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="96.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="OK" />
+            <Button fx:id="closeButton" layoutX="96.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonClicked" prefHeight="25.0" prefWidth="74.0" text="OK" />
          </children>
       </Pane>
    </bottom>

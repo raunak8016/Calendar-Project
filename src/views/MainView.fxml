@@ -24,6 +24,11 @@
    <bottom>
       <VBox prefHeight="168.0" prefWidth="610.0" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="createCalendar" mnemonicParsing="false" onAction="#createCalendarClicked" text="Create Another Calendar!">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="190.0" />
+               </VBox.margin>
+            </Button>
             <Label alignment="CENTER" prefHeight="45.0" prefWidth="609.0" text="What would you like to do with the monthly calendar you have selected?" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="30.0" />
@@ -48,9 +53,9 @@
       </VBox>
    </bottom>
    <left>
-      <ChoiceBox fx:id="calendarChoiceBox" prefHeight="68.0" prefWidth="460.0" BorderPane.alignment="CENTER">
+      <ChoiceBox fx:id="calendarChoiceBox" prefHeight="39.0" prefWidth="177.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="80.0" left="50.0" top="30.0" />
+            <Insets bottom="10.0" left="200.0" />
          </BorderPane.margin>
       </ChoiceBox>
    </left>
