@@ -24,16 +24,28 @@ public class Calendar {
 	 * @param month the month of the Calendar object
 	 */
 	public Calendar(int year, int month) {
+		
+		/*
+		 * The code below is going to be moved to separate
+		 * getter and setter methods. This will allow for
+		 * a more readable constructor.
+		 */
+		
 		// Ensures valid values for year.
-		if(year >= 0 && year <= 3000)
+		if(year >= 0 && year <= 3000) {
 			this.year= year;
-		else
+		}
+		else {
 			System.out.println("Error");
+		}
+		
 		// Ensures valid values for month.
-		if (month >= 1 && month <= 12)
+		if (month >= 1 && month <= 12) {
 			this.month = month;
-		else
+		}
+		else {
 			System.out.println("Error");
+		}
 	}
 	
 	/**
@@ -74,11 +86,21 @@ public class Calendar {
 	 */
 	public Schedule accessScheduleForUser(){
 		for (Schedule schedule : schedules) {
-			if (schedule.getYear() == year && schedule.getMonth().equals(Month.of(month).toString()) && schedule.getDay() == 0) {
+			if (schedule.getScheduleYear() == year && schedule.getScheduleMonth().equals(Month.of(month).toString()) && schedule.getScheduleDay() == 0) {
 				return schedule;
 			}
 		}
 		return new Schedule(year, month);
+	}
+	
+	// Method needs to be implemented.
+	
+	public boolean isLeapYear() {
+		return true;
+	}
+	
+	public int setYear() {
+		return 0;
 	}
 	
 	/**

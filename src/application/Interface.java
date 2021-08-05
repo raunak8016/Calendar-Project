@@ -93,9 +93,8 @@ public class Interface {
 	 */
 	public void viewCalendar() {
 		System.out.println("\nHere are all of your current calendars."
-				+ "\nwhich one would you like to view?");
-		
-		System.out.println("\n" + calendars.keySet().toString()); //display list of calendars
+						+ "\nWhich one would you like to view?"
+						+ "\n" + calendars.keySet().toString());
 		
 		HashMap<String, Integer> calendarArgs = returnYearandMonth();
 		
@@ -108,15 +107,6 @@ public class Interface {
 			System.out.println("");
 			calendarInstance.printMonth();
 			System.out.println("");
-			/*System.out.println("\n+Would you like to view a schedule? ");
-			switch (userInput.nextLine()) {
-				case "yes":
-					scheduleVisual(year, month, calendarInstance.accessScheduleForUser());
-					break;
-				default:
-					break;
-			}*/
-			
 		}
 		else
 			System.out.println("Error: Calendar does not exist ");

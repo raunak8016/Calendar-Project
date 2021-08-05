@@ -39,7 +39,12 @@ public class Menu extends Interface{
 		else {
 			//code for the menu functionality
 			boolean stayInLoop = true;
-			while (stayInLoop) { //while inside the foreloop the menu will be displayed after each user input runs 
+			/*
+			 * While loop keeps running to return the user back to
+			 * the same starting menu, while keeping information in
+			 * the interface.
+			 */
+			while (stayInLoop) {
 				String input = userInput.nextLine();
 				switch (input) {
 					case "create":
