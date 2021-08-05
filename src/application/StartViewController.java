@@ -20,6 +20,9 @@ public class StartViewController {
 
     @FXML
     private Label topLabelMessage;
+    
+    GUIApplication appRunner;
+    
 
     @FXML
     void submitButtonClicked(ActionEvent event) {
@@ -30,7 +33,7 @@ public class StartViewController {
     				&& Integer.parseInt(monthField.getText())<12)) {
     			year = Integer.parseInt(yearField.getText());
         		month = Integer.parseInt(monthField.getText());
-        		Calendar userGen = new Calendar(year, month);
+        		appRunner.mainView(year, month);
     		}
     		else {
     			topLabelMessage.setText("Invalid numbers entered for year and month");
@@ -43,12 +46,8 @@ public class StartViewController {
 
 	public void linkWithApplication(GUIApplication guiApplication) {
 		// TODO Auto-generated method stub
-		
+		appRunner = guiApplication;
 	}
 
-	public void linkWithApplication(GUIApplication guiApplication) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
