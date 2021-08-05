@@ -2,7 +2,10 @@ package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.Event;
 
@@ -43,6 +46,14 @@ public class EventViewController {
 
     @FXML
     private Label lengthOutputLabel;
+    
+    @FXML
+    private Button closeButton;
+    
+    @FXML
+    void closeButtonClicked(ActionEvent event) {
+    	System.exit(0);
+    }
 
     @FXML
     void initialize() {

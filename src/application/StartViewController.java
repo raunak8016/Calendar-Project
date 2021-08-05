@@ -30,7 +30,7 @@ public class StartViewController {
     	int month;
     	try {
     		if (Integer.parseInt(yearField.getText())>=0 && (Integer.parseInt(monthField.getText())>0 
-    				&& Integer.parseInt(monthField.getText())<12)) {
+    				&& Integer.parseInt(monthField.getText())<=12)) {
     			year = Integer.parseInt(yearField.getText());
         		month = Integer.parseInt(monthField.getText());
         		appRunner.mainView(year, month);

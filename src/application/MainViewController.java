@@ -27,7 +27,12 @@ public class MainViewController {
     @FXML
     private Button viewScheduleButton;
     
-    private Interface Calendars = new Interface();
+    @FXML
+    private Button createCalendar;
+    
+    private static Interface Calendars = new Interface();
+    
+    GUIApplication appRunner;
     
     
     public void setCalendarChoices() {
@@ -42,7 +47,12 @@ public class MainViewController {
 
     @FXML
     void viewButtonClicked(ActionEvent event) {
-
+    	appRunner.calendarView();
+    }
+    
+    @FXML
+    void createCalendarClicked(ActionEvent event) {
+    	appRunner.startView();
     }
 
     @FXML
@@ -52,7 +62,6 @@ public class MainViewController {
 
     @FXML
     void viewScheduleButtonClicked(ActionEvent event) {
-
     }
 
     @FXML
@@ -65,8 +74,12 @@ public class MainViewController {
 		Calendar userGen = new Calendar(year, month);
 		
 		Calendars.calendars.put(userGen.toString(), userGen);
-		System.out.println(Calendars.calendars);
 		setCalendarChoices();
+	}
+	
+	public void linkWithApplication(GUIApplication guiApplication) {
+		// TODO Auto-generated method stub
+		appRunner = guiApplication;
 	}
 
 }
