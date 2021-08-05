@@ -80,8 +80,7 @@ public class Event {
 	 * @param eventYear the eventYear to set
 	 */
 	public void setEventYear(int eventYear) {
-		if (eventYear <= 3000)
-			this.eventYear = eventYear;
+		this.eventYear = eventYear;
 	}
 	
 	// Getter and setter methods for eventMonth.
@@ -97,8 +96,7 @@ public class Event {
 	 * @param eventMonth the eventMonth to set
 	 */
 	public void setEventMonth(int eventMonth) {
-		if (eventMonth <= 12 && eventMonth >= 1)
-			this.eventMonth = Month.of(eventMonth).toString();
+		this.eventMonth = Month.of(eventMonth).toString();
 	}
 
 	/**
@@ -128,11 +126,7 @@ public class Event {
 	 * @param eventTimeFrame the eventTimeFrame to set
 	 */
 	public void setEventTimeFrame(double[] eventTimeFrame) {
-		if (eventTimeFrame[0] < eventTimeFrame[1]) {
-			if (eventTimeFrame[0] >= 0.0 && eventTimeFrame[1] < 24.0) {
-				this.eventTimeFrame = eventTimeFrame;
-			}
-		}
+		this.eventTimeFrame = eventTimeFrame;
 	}
 	
 	/**
@@ -153,28 +147,19 @@ public class Event {
 	 * @return eventTimeFrame as String in 12 hour format
 	 */
 	public String timeFrameToString() {
-		
-		/*
-		 * String for formatting to 12 hour format.
-		 * appends AM or PM depending on 24 hour
-		 * values.
-		 */
 		String first = "";
 		String second = "PM";
-		
-		// Event timeframe formatted in hours and minutes.
+		// Event start.
 		int startHour = (int) eventTimeFrame[0];
 		int startMin = (int) ((eventTimeFrame[0] - (startHour)) * 100);
+		// Event end.
 		int endHour = (int) eventTimeFrame[1];
 		int endMin = (int) ((eventTimeFrame[1] - endHour) * 100);
-		
 		// Start of timeFrame as String
 		String startTime;
-		
 		// Reassigned values to be added into formatted String
 		String newStartMin = Integer.toString(startMin);
 		String newEndMin = Integer.toString(endMin);
-		
 		/*
 		 * Sets conditional for formatting into hours
 		 * and minutes as well as adding AM/PM formatting
@@ -184,26 +169,26 @@ public class Event {
 		if ((eventTimeFrame[0] > 12) && (eventTimeFrame[1] > 12)) {
 			startHour -= 12;
 			endHour -= 12;
-			if (startMin >= 0 && startMin < 10) {
+			if (startMin == 0 || startMin < 10) {
 				newStartMin = "0" + newStartMin;
 			}
 			startTime = String.format("%s:%s", startHour, newStartMin);
 		}
 		else if ((eventTimeFrame[0] < 12) && (eventTimeFrame[1] < 12)) {
 			second = "AM";
-			if (startMin >= 0 && startMin < 10) {
+			if (startMin == 0 || startMin < 10) {
 				newStartMin = "0" + newStartMin;
 			}
 			startTime = String.format("%s:%s", startHour, newStartMin);
 		} else {
 			first = "AM";
-			if (startMin >= 0 && startMin < 10) {
+			if (startMin == 0 || startMin < 10) {
 				newStartMin = "0" + newStartMin;
 			}
 			endHour -= 12;
 			startTime = String.format("%s:%s %s", startHour, newStartMin, first);
 		}
-		if (endMin == 0 && endMin < 10) {
+		if (endMin == 0 || endMin < 10) {
 			newEndMin = "0" + newEndMin;
 		}
 		// endTime formatted
@@ -212,6 +197,7 @@ public class Event {
 		return String.format("%s - %s", startTime, endTime);
 	}
 
+	// toString() method
 	public String toString() {
 		return String.format("%s scheduled on %s %s %s", eventName, dateToString(), "@", timeFrameToString());
 	}
