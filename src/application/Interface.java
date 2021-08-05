@@ -88,6 +88,13 @@ public class Interface {
 		calendars.put(newCalendar.toString(), newCalendar); //add NewCalendar to Calendars hashmap
 		System.out.println("\nCalendar successfully created!\n");
 	}
+	
+	public void addCalendarGUI(Calendar addCal){
+		calendars.put(addCal.toString(), addCal);
+	}
+	
+	
+	
 	/*
 	 * Method to view a calendar from the Hashmap calendars
 	 */
