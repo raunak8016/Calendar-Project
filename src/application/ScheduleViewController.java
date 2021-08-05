@@ -15,7 +15,7 @@ import models.Schedule;
  *
  */
 public class ScheduleViewController {
-	Schedule schedule;
+	private Schedule schedule;
 
     @FXML
     private ResourceBundle resources;

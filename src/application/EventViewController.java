@@ -6,6 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import models.Event;
 
+/**
+ * 
+ * @author Sidd
+ *
+ */
 public class EventViewController {
 	private Event event;
 

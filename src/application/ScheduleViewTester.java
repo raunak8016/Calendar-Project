@@ -8,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Sidd
+ *
+ */
 public class ScheduleViewTester extends Application {
 	
 	@Override
