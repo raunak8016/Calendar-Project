@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * @author Sidd
  * 
  */
-
 public class Schedule {
 	private ArrayList<Event> events = new ArrayList<Event>();
 	private int scheduleYear;
@@ -19,16 +18,17 @@ public class Schedule {
 	 * with ArrayList instance of events and
 	 * date to place schedule on the Calendar.
 	 * 
-	 * @param setEvents
-	 * @param setYear
-	 * @param setMonth
-	 * @param setDay
+	 * @param events
+	 * @param scheduleYear
+	 * @param scheduleMonth
+	 * @param scheduleDay
 	 */
-	public Schedule(ArrayList<Event> setEvents, int setYear, int setMonth, int setDay) {
-		events = setEvents;
-		scheduleYear = setYear;
-		scheduleMonth = Month.of(setMonth).toString();
-		scheduleDay = setDay;
+	public Schedule(ArrayList<Event> events, int scheduleYear,
+					int scheduleMonth, int scheduleDay) {
+		this.setEvents(events);
+		this.setScheduleYear(scheduleYear);
+		this.setScheduleMonth(scheduleMonth);
+		this.setScheduleDay(scheduleDay);
 	}
 	
 	/**
@@ -39,10 +39,10 @@ public class Schedule {
 	 * @param setMonth
 	 * @param setDay
 	 */
-	public Schedule(int setYear, int setMonth, int setDay) {
-		scheduleYear = setYear;
-		scheduleMonth = Month.of(setMonth).toString();
-		scheduleDay = setDay;
+	public Schedule(int scheduleYear, int scheduleMonth, int scheduleDay) {
+		this.setScheduleYear(scheduleYear);
+		this.setScheduleMonth(scheduleMonth);
+		this.setScheduleDay(scheduleDay);
 	}
 	
 	/**
@@ -50,36 +50,79 @@ public class Schedule {
 	 * with only the year and the month being
 	 * assigned.
 	 * 
-	 * @param setYear
-	 * @param setMonth
+	 * @param scheduleYear
+	 * @param scheduleMonth
 	 */
-	public Schedule(int setYear, int setMonth) {
-		scheduleYear = setYear;
-		scheduleMonth = Month.of(setMonth).toString();
+	public Schedule(int scheduleYear, int scheduleMonth) {
+		this.setScheduleYear(scheduleYear);
+		this.setScheduleMonth(scheduleMonth);
 	}
 	
+	// method needs to be implemented to see if the year is a leap year
+	
+	/**
+	 * @param scheduleDay for the Schedule Object
+	 */
+	public void setScheduleDay(int scheduleDay) {
+		int numOfDays = Month.valueOf(this.scheduleMonth).length(false);
+		if (scheduleDay <= numOfDays) {
+			this.scheduleDay = scheduleDay;
+		}
+		else {
+			System.out.printf("Schedule day value has to be between 1"
+							+ "and %s days for the month of %s",
+							numOfDays, this.scheduleMonth);
+		}
+	}
+	
+	/*
+	 * There is a privacy leak in this function
+	 * that needs to be fixed.
+	 */
+	
+	/**
+	 * @param events the events to set
+	 */
+	public void setEvents(ArrayList<Event> events) {
+		this.events = events;
+	}
+
 	/**
 	 * @return events as an ArrayList
 	 */
 	public ArrayList<Event> getEvents() {
-		/*ArrayList<Event> newEventList = new ArrayList<Event>();
-		for (Event event : this.events) {
-			newEventList.add(event);
-		}*/ //why do we have this, it screws up schedule menu
 		return events;
 	}
 	
 	/**
 	 * @return the scheduleYear
 	 */
-	public int getYear() {
-		return scheduleYear;
+	public int getScheduleYear() {
+		return this.scheduleYear;
+	}
+
+	/**
+	 * @param scheduleYear the scheduleYear to set
+	 */
+	public void setScheduleYear(int scheduleYear) {
+		if (scheduleYear >= 2000 && scheduleYear <= 3000) {
+			this.scheduleYear = scheduleYear;
+		}
+	}
+	
+	/**
+	 * @param scheduleMonth is the month of the Schedule object/instance.
+	 */
+	public void setScheduleMonth(int scheduleMonth) {
+		if (scheduleMonth >= 1 && scheduleMonth <= 12) {
+			this.scheduleMonth = Month.of(scheduleMonth).toString();
+		}
 	}
 	
 	/**
 	 * @return the scheduleDay
 	 */
-	public String getMonth() {
+	public String getScheduleMonth() {
 		String scheduleMonthCopy = new String(scheduleMonth);
 		return scheduleMonthCopy;
 	}
@@ -87,7 +130,7 @@ public class Schedule {
 	/**
 	 * @return the scheduleDay
 	 */
-	public int getDay() {
+	public int getScheduleDay() {
 		return scheduleDay;
 	}
 	
@@ -102,23 +145,30 @@ public class Schedule {
 		 *  Adds eventToAdd only if the values
 		 *  match those of the Schedule instance.
 		 */
-		if (year == scheduleYear && month.equals(scheduleMonth) && day == scheduleDay)
-			this.events.add(eventToAdd);
+		if (year == getScheduleYear() && month.equals(scheduleMonth) && day == scheduleDay) {
+			this.getEvents().add(eventToAdd);
+		} else {
+			System.out.println("Error: One of the arguments of the event"
+							 + "are not within the range of this schedule.");
+		}
+			
 	}
 	
 	/**
 	 * @return String visualization of schedule 
 	 */
 	public String scheduleVisualizer() {
+		String scheduleVisualization = "";
+		
 		if (this.getEvents().isEmpty()) {
 			return "There are no events scheduled here.";
 		}
-		String ret = "";
+		
 		for (int i = 0; i < this.getEvents().size(); i++) {
 			System.out.println("");
-			ret = ret + this.getEvents().get(i).toString() + " \n";
+			scheduleVisualization = scheduleVisualization + this.getEvents().get(i).toString() + " \n";
 		}
-		return ret;
+		return scheduleVisualization;
 	}
 	
 }
