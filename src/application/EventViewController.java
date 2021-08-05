@@ -8,7 +8,7 @@ import models.Event;
 
 public class EventViewController {
 	private Event event;
-	
+
 	/**
 	 * @return the event
 	 */
@@ -52,11 +52,15 @@ public class EventViewController {
         assert endsOutputLabel != null : "fx:id=\"endsOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
         assert lengthOutputLabel != null : "fx:id=\"lengthOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
         
-        nameOutputLabel.setText(event.getEventName());
-        nameOutputLabel.setText(Double.toString(event.getEventTimeFrame()[0]));
-        nameOutputLabel.setText(Double.toString(event.getEventTimeFrame()[1]));
-        nameOutputLabel.setText(String.format("%s %s, %s", event.getEventDay(), event.getEventMonth(), event.getEventYear()));
-        nameOutputLabel.setText(Double.toString(event.getEventTimeFrame()[1] - event.getEventTimeFrame()[0]));
+        double[] sampleTimes = {3.0, 15.15};
+        
+        this.event = new Event("test event", 21, 3, 2020, sampleTimes);
+        
+        nameOutputLabel.setText(this.event.getEventName());
+        startsOutputLabel.setText(Double.toString(this.event.getEventTimeFrame()[0]));
+        endsOutputLabel.setText(Double.toString(this.event.getEventTimeFrame()[1]));
+        dateOutputLabel.setText(String.format("%s %s, %s", this.event.getEventDay(), this.event.getEventMonth(), this.event.getEventYear()));
+        lengthOutputLabel.setText(Double.toString(this.event.getEventTimeFrame()[1] - this.event.getEventTimeFrame()[0]));
         
     }
     

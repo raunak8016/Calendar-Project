@@ -145,18 +145,25 @@ public class Schedule {
 		 *  Adds eventToAdd only if the values
 		 *  match those of the Schedule instance.
 		 */
-		if (year == getScheduleYear() && month.equals(scheduleMonth) && day == scheduleDay)
+		if (year == getScheduleYear() && month.equals(scheduleMonth) && day == scheduleDay) {
 			this.getEvents().add(eventToAdd);
+		} else {
+			System.out.println("Error: One of the arguments of the event"
+							 + "are not within the range of this schedule.");
+		}
+			
 	}
 	
 	/**
 	 * @return String visualization of schedule 
 	 */
 	public String scheduleVisualizer() {
+		String scheduleVisualization = "";
+		
 		if (this.getEvents().isEmpty()) {
 			return "There are no events scheduled here.";
 		}
-		String scheduleVisualization = "";
+		
 		for (int i = 0; i < this.getEvents().size(); i++) {
 			System.out.println("");
 			scheduleVisualization = scheduleVisualization + this.getEvents().get(i).toString() + " \n";
