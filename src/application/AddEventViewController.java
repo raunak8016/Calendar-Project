@@ -11,6 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.Event;
 
+/**
+ * 
+ * @author Sidd
+ *
+ */
 public class AddEventViewController {
 	private Event eventToAdd;
 

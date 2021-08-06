@@ -12,7 +12,6 @@ import models.Schedule;
  * @author raunak
  * 
  */
-
 public class Interface {
 	HashMap<String, Calendar> calendars = new HashMap<String, Calendar>();
 	Scanner userInput = new Scanner(System.in);
