@@ -55,6 +55,13 @@ public class ScheduleViewController {
     	viewEvent(index);
     }
     
+    /**
+     * Opens up another window for a user to view whichever Event
+     * object they have selected in the ListView within the
+     * GUI of the ScheduleView Controller.
+     * 
+     * @param index of the list in which the Event object exists.
+     */
     public void viewEvent(int index) {
     	FXMLLoader loader = new FXMLLoader();
 		Scene scene;
@@ -74,13 +81,15 @@ public class ScheduleViewController {
 		}
     }
 
+    /**
+     * Initializes the Controller, and sets the EventView to an
+     * ObservableArrayList object, so JavaFX can interact with them.
+     */
     @FXML
     void initialize() {
         assert eventListView != null : "fx:id=\"eventListView\" was not injected: check your FXML file 'ScheduleView.fxml'.";
 
         schedule = AddEventViewController.Schedule;
-
-        
         eventListView.setItems(FXCollections.observableArrayList(schedule));
     }
 

@@ -24,7 +24,13 @@ public class CalendarViewController {
     private Label calendarReprLabel; // Value injected by FXMLLoader
     
     
-
+    /**
+     * Initializes the Controller class for the viewing
+     * of the Calendar selected by the user.
+     * 
+     * @param test the Calendar object that the user
+     * has selected.
+     */
     public void Initialize(Calendar test) {
         assert calendarReprLabel != null : "fx:id=\"calendarReprLabel\" was not injected: check your FXML file 'CalendarView.fxml'.";
                 

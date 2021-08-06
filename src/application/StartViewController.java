@@ -28,7 +28,15 @@ public class StartViewController {
     
     GUIApplication appRunner;
     
-
+    /**
+     * Adds a Calendar based on whether or not the
+     * Submit button was clicked within the GUI
+     * when the user enters in the values they
+     * want for the new Calendar they created.
+     * 
+     * @param event where the user clicks the
+     * 'Submit' button within the GUI.
+     */
     @FXML
     void submitButtonClicked(ActionEvent event) {
     	int year;
@@ -49,6 +57,15 @@ public class StartViewController {
     	
     }
 
+    /**
+     * Links with the main GUIApplication so it can
+     * implement this controller class along with
+     * its view.
+     * 
+     * @param guiApplication the main GUIApplication
+     * instance that all other controllers are
+     * linked to.
+     */
 	public void linkWithApplication(GUIApplication guiApplication) {
 		// TODO Auto-generated method stub
 		appRunner = guiApplication;

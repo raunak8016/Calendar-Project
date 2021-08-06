@@ -23,6 +23,13 @@ import javafx.scene.layout.BorderPane;
 public class GUIApplication extends Application {
 	private Stage primaryStage;
 	
+	/**
+	 * The starting view that the user gets when they
+	 * haven't created a Calendar. This ensures
+	 * that the user can only navigate the app
+	 * if they have a Calendar for which they can
+	 * schedule events in.
+	 */
 	public void startView() {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;
@@ -41,13 +48,14 @@ public class GUIApplication extends Application {
 	}
 	
 	/**
-	 * changes the view to MainView.fxml
+	 * Changes the view to the MainView.fxml, and
+	 * sets a new Scene to open as a window for
+	 * the MainView file and controller class.
 	 */
 	public void mainView(int year, int month) {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;
 		try {
-
 			BorderPane root = loader.load(new FileInputStream("src/views/MainView.fxml"));
 			MainViewController mainViewController = loader.getController();
 			mainViewController.linkWithApplication(this);
@@ -55,8 +63,6 @@ public class GUIApplication extends Application {
 			scene = new Scene(root,700,500);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
-
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (IOException e) {
@@ -65,6 +71,15 @@ public class GUIApplication extends Application {
 		
 	}
 	
+	/**
+	 * Changes the view to the CalendarView.fxml,
+	 * and sets a new Scene to open as a window
+	 * for the CalendarView file and controller
+	 * class.
+	 * 
+	 * @param passOn the Calendar object value
+	 * to display the data or representation of.
+	 */
 	public void calendarView(Calendar passOn) {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;
@@ -84,6 +99,11 @@ public class GUIApplication extends Application {
 		}
 	}
 	
+	/**
+	 * Adds the AddEvetView.fxml, and switches to a window
+	 * which allows the user to add and event to whichever
+	 * Schedule they select.
+	 */
 	public void addEventView() {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;
@@ -101,6 +121,11 @@ public class GUIApplication extends Application {
 		}
 	}
 	
+	/**
+	 * Adds the ScheduleView, which allows the user to
+	 * view the Event objects booked within a given
+	 * Schedule object.
+	 */
 	public void scheduleView() {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;

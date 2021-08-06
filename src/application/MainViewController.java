@@ -39,7 +39,10 @@ public class MainViewController {
     
     GUIApplication appRunner;
     
-    
+    /**
+     * Sets the choice of calendars based on whichever
+     * ones have been created by the user.
+     */
     public void setCalendarChoices() {
     	String[] calendarStrings = new String[Calendars.calendars.size()];
     	int count = 0;
@@ -76,7 +79,13 @@ public class MainViewController {
     void quitButtonClicked(ActionEvent event) {
         System.exit(0);
     }
-
+    
+    /**
+     * Sets the Calendar year and month based
+     * on user generated input.
+     * @param year
+     * @param month
+     */
 	public void setCalendar(int year, int month) {
 		// TODO Auto-generated method stub
 		Calendar userGen = new Calendar(year, month);
@@ -85,6 +94,13 @@ public class MainViewController {
 		setCalendarChoices();
 	}
 	
+	/**
+	 * Links the Controller class with the instance of the
+	 * main GUIApplication.
+	 * 
+	 * @param guiApplication the Application that links
+	 * the Controller components.
+	 */
 	public void linkWithApplication(GUIApplication guiApplication) {
 		// TODO Auto-generated method stub
 		appRunner = guiApplication;

@@ -41,16 +41,36 @@ public class EventViewController {
     @FXML
     private Button closeButton;
     
+    /**
+     * Closes the current window for viewing the
+     * event only.
+     * 
+     * @param event
+     */
     @FXML
     void closeButtonClicked(ActionEvent event) {
     	Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
     
+    /**
+     * Looks at which Event a user has chosen based
+     * on its index.
+     * 
+     * @param index of the event.
+     * @return
+     */
     public Event chooseEvent(int index) {
         return AddEventViewController.Schedule.get(index);
     }
-
+    
+    /**
+     * Initializes and sets event text data for the user to view
+     * based on the index of the collection of events. The
+     * event is specified with the variable 'passOn'.
+     * 
+     * @param index
+     */
     void initialize(int index) {
         assert nameOutputLabel != null : "fx:id=\"nameOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
         assert dateOutputLabel != null : "fx:id=\"dateOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
@@ -59,7 +79,6 @@ public class EventViewController {
         assert lengthOutputLabel != null : "fx:id=\"lengthOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
         
         Event passOn = this.chooseEvent(index);
-        
 
         nameOutputLabel.setText(passOn.getEventName());
         startsOutputLabel.setText(Double.toString(passOn.getEventTimeFrame()[0]));
