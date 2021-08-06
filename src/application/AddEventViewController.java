@@ -38,11 +38,11 @@ public class AddEventViewController {
 
     @FXML
     void cancelEventButtonClicked(ActionEvent event) {
-
+    	System.exit(0);
     }
 
     @FXML
-    void onAddEventButtonClicked(ActionEvent event) {
+    Event onAddEventButtonClicked(ActionEvent event) {
     	String name = eventNameField.getText();
     	String date = eventDateField.getText();
     	double start;
@@ -68,6 +68,7 @@ public class AddEventViewController {
     	} catch (Exception NumberFormatException) {
     		System.out.println("that's illegal and you know it");
     	}
+    	return this.eventToAdd;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

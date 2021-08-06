@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import models.Event;
@@ -25,6 +26,17 @@ public class ScheduleViewController {
 
     @FXML
     private ListView<Event> eventListView;
+    
+    @FXML
+    void closeScheduleViewButtonClicked(ActionEvent event) {
+    	System.exit(0);
+    }
+
+    @FXML
+    void viewEventButtonClicked(ActionEvent event) {
+    	Event eventToView = eventListView.getSelectionModel().getSelectedItem();
+    	
+    }
 
     @FXML
     void initialize() {

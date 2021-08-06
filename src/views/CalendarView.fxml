@@ -5,12 +5,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.CalendarViewController">
+<BorderPane prefHeight="241.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CalendarViewController">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="calendarReprLabel" layoutX="14.0" layoutY="14.0" text="Label" />
+            <TableView fx:id="calendarGridView" layoutX="-1.0" prefHeight="241.0" prefWidth="266.0">
+              <columns>
+                <TableColumn fx:id="sundays" prefWidth="38.0" resizable="false" text="Sun" />
+                <TableColumn fx:id="mondays" prefWidth="38.0" resizable="false" text="Mon" />
+                  <TableColumn fx:id="tuesdays" prefWidth="38.0" resizable="false" text="Tue" />
+                  <TableColumn fx:id="wednesdays" prefWidth="38.0" resizable="false" text="Wed" />
+                  <TableColumn fx:id="thursdays" prefWidth="38.0" resizable="false" text="Thu" />
+                  <TableColumn fx:id="fridays" prefWidth="38.0" resizable="false" text="Fri" />
+                  <TableColumn fx:id="saturdays" prefWidth="38.0" resizable="false" text="Sat" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
    </center>
