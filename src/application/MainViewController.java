@@ -10,6 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import models.Calendar;
 
+/**
+ * 
+ * @author raunak
+ *
+ */
 public class MainViewController {
 
     @FXML

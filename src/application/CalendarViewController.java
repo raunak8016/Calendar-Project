@@ -12,7 +12,7 @@ import models.Calendar;
  *
  */
 public class CalendarViewController {
-	String monthViewStringRepr;
+	String monthView;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -29,9 +29,9 @@ public class CalendarViewController {
         
         Calendar calendar = new Calendar(2012, 2);
         
-        this.monthViewStringRepr = calendar.monthRepr();
+        this.monthView = calendar.monthRepr();
         
-        calendarReprLabel.setText(monthViewStringRepr);
+        calendarReprLabel.setText(this.monthView);
     }
 }
 

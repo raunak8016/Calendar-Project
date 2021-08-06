@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  * @author raunak
  *
  */
-
 public class MainViewTester extends Application{
 	/**
 	 * Starts the Tester class application for the

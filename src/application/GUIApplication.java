@@ -20,7 +20,6 @@ import javafx.scene.layout.BorderPane;
  * @author raunak
  *
  */
-
 public class GUIApplication extends Application {
 	private Stage primaryStage;
 	
@@ -40,9 +39,10 @@ public class GUIApplication extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * changes the view to MainView.fxml
-	 * 	 */
+	 */
 	public void mainView(int year, int month) {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;

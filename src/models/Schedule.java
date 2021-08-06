@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * 
  * @author Sidd
- * 
+ *
  */
 public class Schedule {
 	private ArrayList<Event> events = new ArrayList<Event>();

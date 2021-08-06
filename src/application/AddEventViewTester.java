@@ -13,14 +13,14 @@ import javafx.stage.Stage;
  * @author Sidd
  *
  */
-public class CalendarViewTester extends Application {
+public class AddEventViewTester extends Application {
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			BorderPane root = loader.load(new FileInputStream("src/views/CalendarView.fxml"));
-			Scene scene = new Scene(root, 200, 200);
+			BorderPane root = loader.load(new FileInputStream("src/views/AddEventView.fxml"));
+			Scene scene = new Scene(root, 500, 500);
 			
 			primaryStage.setScene(scene);
 			primaryStage.show();
