@@ -17,6 +17,10 @@ import models.Schedule;
  */
 public class ScheduleViewController {
 	private Schedule schedule;
+	
+//	public void setSchedule(Schedule schedule) {
+//		this.schedule = schedule;
+//	}
 
     @FXML
     private ResourceBundle resources;
@@ -33,9 +37,9 @@ public class ScheduleViewController {
     }
 
     @FXML
-    void viewEventButtonClicked(ActionEvent event) {
+    Event viewEventButtonClicked(ActionEvent event) {
     	Event eventToView = eventListView.getSelectionModel().getSelectedItem();
-    	
+    	return eventToView;
     }
 
     @FXML
@@ -45,7 +49,10 @@ public class ScheduleViewController {
         this.schedule = new Schedule(2030, 9, 22);
         double[] timeFrameTest = {6.0, 12.0};
         this.schedule.addEvent(new Event("ABC", 22, 9, 2030, timeFrameTest));
+        this.schedule.addEvent(new Event("DEF", 22, 9, 2030, timeFrameTest));
+        this.schedule.addEvent(new Event("GHI", 22, 9, 2030, timeFrameTest));
         
         eventListView.setItems(FXCollections.observableArrayList(this.schedule.getEvents()));
     }
+
 }
