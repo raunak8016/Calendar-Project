@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author Sidd University
+ * @author Sidd
  *
  */
 public class CalendarViewTester extends Application {
