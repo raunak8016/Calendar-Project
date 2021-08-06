@@ -82,7 +82,7 @@ public class Calendar {
 	
 	public String monthRepr() {
 		YearMonth yearMonth = YearMonth.of(year, month);
-        String monthView = "Sun Mon Tue Wed Thu Fri Sat";
+        String monthView = "Sun Mon Tue Wed Thu Fri Sat \n";
         int counter = 1;
         
         /*
@@ -103,7 +103,7 @@ public class Calendar {
 
             // Breaks the line if the value of the counter is a multiple of 7.
             if (counter % 7 == 0) {
-                monthView += " \n";
+                monthView += "\n";
             }
         }
         return monthView;
