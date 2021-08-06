@@ -36,6 +36,7 @@ public class CalendarViewController {
                 
         this.monthView = test.monthRepr();
         
+        //set Label to Calendar Visualization
         calendarReprLabel.setText(this.monthView);
     }
     

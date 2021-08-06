@@ -70,8 +70,6 @@ public class AddEventViewController {
     void onAddEventButtonClicked(ActionEvent event) {
     	String name = eventNameField.getText();
     	String date = eventDateField.getText();
-    	double start;
-    	double end;
     	try {
     		String[] splitDateArray = date.split("/");
     		// Checks to see if the start time is less than the end time
@@ -79,21 +77,17 @@ public class AddEventViewController {
 				int day = Integer.parseInt(splitDateArray[0]);
         		int month = Integer.parseInt(splitDateArray[1]);
         		int year = Integer.parseInt(splitDateArray[2]);
-        		start = Double.parseDouble(eventStartField.getText());
-    			end = Double.parseDouble(eventEndField.getText());
+        		double start = Double.parseDouble(eventStartField.getText());
+    			double end = Double.parseDouble(eventEndField.getText());
     			// Ensures timeframe values are valid.
     			if (start > 0.0 && end < 24.0) {
-    				double[] timeFrameArray = {start, end};
-        			
+    			    double[] timeFrameArray = {start, end};
             		/*
             		 * Handles invalid values for any of the instance variable
             		 * values of the Event object
             		 */
-            		if (year < 0 || year > 3000 ||
-            			day > Month.of(month).length(Year.isLeap(year)) ||
-            			month > 12 || month < 1 ||
-            			start < 0 || end > 24) {
-            			// Can be configured to a Label controller later.
+            		if (year < 0 || year > 3000 || day > Month.of(month).length(Year.isLeap(year)) ||
+            			month > 12 || month < 1 || start < 0 || end > 24) {
             			System.out.println("Please set values within the proper range.");
             		}
             		else {

@@ -78,8 +78,10 @@ public class EventViewController {
         assert endsOutputLabel != null : "fx:id=\"endsOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
         assert lengthOutputLabel != null : "fx:id=\"lengthOutputLabel\" was not injected: check your FXML file 'EventView.fxml'.";
         
+        //sets Event passOn to the event that the user has selected
         Event passOn = this.chooseEvent(index);
 
+        //sets labels to Event passOn information
         nameOutputLabel.setText(passOn.getEventName());
         startsOutputLabel.setText(Double.toString(passOn.getEventTimeFrame()[0]));
         endsOutputLabel.setText(Double.toString(passOn.getEventTimeFrame()[1]));

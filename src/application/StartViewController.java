@@ -44,14 +44,17 @@ public class StartViewController {
     	try {
     		if (Integer.parseInt(yearField.getText())>=0 && (Integer.parseInt(monthField.getText())>0 
     				&& Integer.parseInt(monthField.getText())<=12)) {
+    			//sets month and year equal to user input if it is valid and then switches to MainView
     			year = Integer.parseInt(yearField.getText());
         		month = Integer.parseInt(monthField.getText());
         		appRunner.mainView(year, month);
     		}
     		else {
+    			//Error Message
     			topLabelMessage.setText("Invalid numbers entered for year and month");
     		}
     	} catch (Exception NumberFormatException ) {
+    		//Error Message
     		topLabelMessage.setText("Enter numerical values for year and month");
     	}
     	

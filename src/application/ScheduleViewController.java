@@ -25,11 +25,8 @@ import models.Schedule;
  *
  */
 public class ScheduleViewController {
+	//ArrayList of events
 	private ArrayList<Event> schedule;
-	
-//	public void setSchedule(Schedule schedule) {
-//		this.schedule = schedule;
-//	}
 
     @FXML
     private ResourceBundle resources;
@@ -43,12 +40,21 @@ public class ScheduleViewController {
     @FXML
     private Button closeScheduleViewButton;
     
+    /**
+     * closes Schedule View when Schedule is clicked
+     * @param event
+     */
     @FXML
     void closeScheduleViewButtonClicked(ActionEvent event) {
     	Stage stage = (Stage) closeScheduleViewButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Shows in depth view of event when
+     * viewEventButton is clicked
+     * @param event
+     */
     @FXML
     void viewEventButtonClicked(ActionEvent event) {
     	int index = eventListView.getSelectionModel().getSelectedIndex();

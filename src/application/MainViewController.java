@@ -54,27 +54,52 @@ public class MainViewController {
     	calendarChoiceBox.getSelectionModel().selectFirst();
     }
 
+    /**
+     * Switches to CalendarView when view button
+     * is clicked
+     * @param event
+     */
     @FXML
     void viewButtonClicked(ActionEvent event) {
     	String selectedItem = calendarChoiceBox.getSelectionModel().getSelectedItem();
     	appRunner.calendarView(Calendars.calendars.get(selectedItem));
     }
     
+    /**
+     * switches to CreateCalendarView
+     * when creat button is clicked
+     * @param event
+     */
     @FXML
     void createCalendarClicked(ActionEvent event) {
     	appRunner.startView();
     }
 
+    /**
+     * Switches to AddEventView when addEventButton
+     * is clicked
+     * @param event
+     */
     @FXML
     void addEventButtonClicked(ActionEvent event) {
     	appRunner.addEventView();
     }
 
+    /**
+     * Switches to viewScheduleView when 
+     * viewScheduleButton is clicked
+     * @param event
+     */
     @FXML
     void viewScheduleButtonClicked(ActionEvent event) {
     	appRunner.scheduleView();
     }
 
+    /**
+     * Quits application when quitButton
+     * is clicked
+     * @param event
+     */
     @FXML
     void quitButtonClicked(ActionEvent event) {
         System.exit(0);
