@@ -1,12 +1,21 @@
 package application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import models.Event;
 import models.Schedule;
 
@@ -16,7 +25,7 @@ import models.Schedule;
  *
  */
 public class ScheduleViewController {
-	private Schedule schedule;
+	private ArrayList<Event> schedule;
 	
 //	public void setSchedule(Schedule schedule) {
 //		this.schedule = schedule;
@@ -32,27 +41,47 @@ public class ScheduleViewController {
     private ListView<Event> eventListView;
     
     @FXML
+    private Button closeScheduleViewButton;
+    
+    @FXML
     void closeScheduleViewButtonClicked(ActionEvent event) {
-    	System.exit(0);
+    	Stage stage = (Stage) closeScheduleViewButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    Event viewEventButtonClicked(ActionEvent event) {
-    	Event eventToView = eventListView.getSelectionModel().getSelectedItem();
-    	return eventToView;
+    void viewEventButtonClicked(ActionEvent event) {
+    	int index = eventListView.getSelectionModel().getSelectedIndex();
+    	viewEvent(index);
+    }
+    
+    public void viewEvent(int index) {
+    	FXMLLoader loader = new FXMLLoader();
+		Scene scene;
+		try {
+			BorderPane root = loader.load(new FileInputStream("src/views/EventView.fxml"));
+			EventViewController eventViewController = loader.getController();
+			eventViewController.initialize(index);
+			scene = new Scene(root, 200, 200);
+			Stage stage = new Stage();
+	        stage.setTitle("New Window");
+	        stage.setScene(scene);
+	        stage.show();		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void initialize() {
         assert eventListView != null : "fx:id=\"eventListView\" was not injected: check your FXML file 'ScheduleView.fxml'.";
+
+        schedule = AddEventViewController.Schedule;
+
         
-        this.schedule = new Schedule(2030, 9, 22);
-        double[] timeFrameTest = {6.0, 12.0};
-        this.schedule.addEvent(new Event("ABC", 22, 9, 2030, timeFrameTest));
-        this.schedule.addEvent(new Event("DEF", 22, 9, 2030, timeFrameTest));
-        this.schedule.addEvent(new Event("GHI", 22, 9, 2030, timeFrameTest));
-        
-        eventListView.setItems(FXCollections.observableArrayList(this.schedule.getEvents()));
+        eventListView.setItems(FXCollections.observableArrayList(schedule));
     }
 
 }

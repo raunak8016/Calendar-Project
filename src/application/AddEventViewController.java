@@ -3,12 +3,14 @@ package application;
 import java.net.URL;
 import java.time.Month;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.Event;
 
 /**
@@ -42,14 +44,17 @@ public class AddEventViewController {
 
     @FXML // fx:id="addEventButton"
     private Button addEventButton; // Value injected by FXMLLoader
+    
+    static ArrayList<Event> Schedule = new ArrayList<Event>(); 
 
     @FXML
     void cancelEventButtonClicked(ActionEvent event) {
-    	System.exit(0);
+    	Stage stage = (Stage) cancelEventButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    Event onAddEventButtonClicked(ActionEvent event) {
+    void onAddEventButtonClicked(ActionEvent event) {
     	String name = eventNameField.getText();
     	String date = eventDateField.getText();
     	double start;
@@ -78,13 +83,15 @@ public class AddEventViewController {
         		}
         		else {
         			this.eventToAdd = new Event(name, day, month, year, timeFrameArray);
-        			System.out.println(this.eventToAdd.toString());
+        			Schedule.add(eventToAdd);
+        			Stage stage = (Stage) cancelEventButton.getScene().getWindow();
+        	        stage.close();
         		}
     		}
     	} catch (Exception NumberFormatException) {
     		System.out.println("that's illegal and you know it");
     	}
-    	return this.eventToAdd;
+    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

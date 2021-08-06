@@ -22,16 +22,17 @@ public class CalendarViewController {
 
     @FXML // fx:id="calendarReprLabel"
     private Label calendarReprLabel; // Value injected by FXMLLoader
+    
+    
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    public void Initialize(Calendar test) {
         assert calendarReprLabel != null : "fx:id=\"calendarReprLabel\" was not injected: check your FXML file 'CalendarView.fxml'.";
-        
-        Calendar calendar = new Calendar(2012, 2);
-        
-        this.monthView = calendar.monthRepr();
+                
+        this.monthView = test.monthRepr();
         
         calendarReprLabel.setText(this.monthView);
     }
+    
+    
 }
 

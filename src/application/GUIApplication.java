@@ -65,12 +65,48 @@ public class GUIApplication extends Application {
 		
 	}
 	
-	public void calendarView() {
+	public void calendarView(Calendar passOn) {
 		FXMLLoader loader = new FXMLLoader();
 		Scene scene;
 		try {
-			Parent setupView = (Parent) loader.load(new FileInputStream("src/views/CalendarView.fxml"));
-			scene = new Scene(setupView, 200, 200);
+			BorderPane root = loader.load(new FileInputStream("src/views/CalendarView.fxml"));
+			CalendarViewController calViewController = loader.getController();
+			calViewController.Initialize(passOn);
+			scene = new Scene(root, 200, 200);
+			Stage stage = new Stage();
+	        stage.setTitle("New Window");
+	        stage.setScene(scene);
+	        stage.show();		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addEventView() {
+		FXMLLoader loader = new FXMLLoader();
+		Scene scene;
+		try {
+			Parent setupView = (Parent) loader.load(new FileInputStream("src/views/AddEventView.fxml"));
+			scene = new Scene(setupView, 500, 500);
+			Stage stage = new Stage();
+	        stage.setTitle("New Window");
+	        stage.setScene(scene);
+	        stage.show();		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void scheduleView() {
+		FXMLLoader loader = new FXMLLoader();
+		Scene scene;
+		try {
+			Parent setupView = (Parent) loader.load(new FileInputStream("src/views/ScheduleView.fxml"));
+			scene = new Scene(setupView, 500, 500);
 			Stage stage = new Stage();
 	        stage.setTitle("New Window");
 	        stage.setScene(scene);

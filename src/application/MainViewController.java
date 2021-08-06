@@ -48,11 +48,13 @@ public class MainViewController {
     		count++;
     	}
     	calendarChoiceBox.setItems(FXCollections.observableArrayList(calendarStrings));
+    	calendarChoiceBox.getSelectionModel().selectFirst();
     }
 
     @FXML
     void viewButtonClicked(ActionEvent event) {
-    	appRunner.calendarView();
+    	String selectedItem = calendarChoiceBox.getSelectionModel().getSelectedItem();
+    	appRunner.calendarView(Calendars.calendars.get(selectedItem));
     }
     
     @FXML
@@ -62,11 +64,12 @@ public class MainViewController {
 
     @FXML
     void addEventButtonClicked(ActionEvent event) {
-
+    	appRunner.addEventView();
     }
 
     @FXML
     void viewScheduleButtonClicked(ActionEvent event) {
+    	appRunner.scheduleView();
     }
 
     @FXML
