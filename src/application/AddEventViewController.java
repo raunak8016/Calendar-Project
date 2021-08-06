@@ -1,6 +1,8 @@
 package application;
 
 import java.net.URL;
+import java.time.Month;
+import java.time.Year;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -51,19 +53,28 @@ public class AddEventViewController {
     	try {
     		String[] splitDateArray = date.split("/");
     		if (Double.parseDouble(eventStartField.getText()) < Double.parseDouble(eventEndField.getText())) {
-    			
-    			int day = Integer.parseInt(splitDateArray[0]);
+				int day = Integer.parseInt(splitDateArray[0]);
         		int month = Integer.parseInt(splitDateArray[1]);
         		int year = Integer.parseInt(splitDateArray[2]);
-        		
-    			start = Double.parseDouble(eventStartField.getText());
+        		start = Double.parseDouble(eventStartField.getText());
     			end = Double.parseDouble(eventEndField.getText());
     			
     			double[] timeFrameArray = {start, end};
     			
-    			this.eventToAdd = new Event(name, day, month, year, timeFrameArray);
-    			
-    			System.out.println(this.eventToAdd.toString());
+        		/*
+        		 * Handles invalid values for any of the instance variable
+        		 * values of the Event object
+        		 */
+        		if (year < 0 || year > 3000 ||
+        			day > Month.of(month).length(Year.isLeap(year)) ||
+        			month > 12 || month < 1) {
+        			// Can be configured to a Label controller later.
+        			System.out.println("Please set values within the proper range.");
+        		}
+        		else {
+        			this.eventToAdd = new Event(name, day, month, year, timeFrameArray);
+        			System.out.println(this.eventToAdd.toString());
+        		}
     		}
     	} catch (Exception NumberFormatException) {
     		System.out.println("that's illegal and you know it");

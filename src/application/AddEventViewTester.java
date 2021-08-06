@@ -8,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Sidd
+ *
+ */
 public class AddEventViewTester extends Application {
 
 	@Override
